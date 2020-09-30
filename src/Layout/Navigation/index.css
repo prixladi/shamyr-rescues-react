@@ -1,0 +1,67 @@
+.bm-burger-button {
+    position: fixed;
+    width: 2em;
+    height: 2em;
+    left: 2em;
+    top: 2em;
+}
+
+.bm-burger-bars {
+    background: #373a47;
+}
+
+.bm-cross-button {
+    height: 2em;
+    width: 2em;
+}
+
+.bm-cross {
+    background: #bdc3c7;
+}
+
+.bm-menu {
+    background-color: #202020;
+    padding: 2.5em 1.5em 0;
+    font-size: 1em;
+    letter-spacing: 0.03em;
+    font-family: "bebas_neuebold", sans-serif;
+    text-transform: uppercase;
+}
+
+.bm-menu-wrap {
+    width: 15em !important;
+}
+
+.bm-morph-shape {
+    fill: #373a47;
+}
+
+.bm-item-list {
+    color: #b8b7ad;
+}
+
+.bm-overlay {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.bm-header {
+    color:  #f1f1f1;
+    margin-bottom: 7em;
+}
+
+.bm-title {
+    letter-spacing: 0.03em;
+    font-size: 2em;
+    font-weight: lighter;
+    display: block;
+}
+
+.bm-footer {
+    padding-top: 20em;
+}
+
+.bm-footer a{
+    text-decoration: none;
+    color: inherit;
+    padding-left: 0.8em;
+}
