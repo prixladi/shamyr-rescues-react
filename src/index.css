@@ -1,15 +1,28 @@
+html {
+  --defaultDarkColor: #202020;
+  --defaultLightColor: #f1f1f1;
+  --backgroundColor: #f1f1f1;
+  --defaultInactiveColor: #999;
+  --textColor: #202020;
+  --anchorTextColor: #d23670;
+}
+
+html[data-theme="dark"] {
+  --backgroundColor: #202020;
+  --textColor: #f1f1f1;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: var(--backgroundColor);
+  color: var(--textColor);
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
 #root {

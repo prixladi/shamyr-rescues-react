@@ -1,13 +1,13 @@
 .bm-burger-button {
     position: fixed;
-    width: 2em;
+    width: 2.5em;
     height: 2em;
-    left: 2em;
+    right: 2em;
     top: 2em;
 }
 
 .bm-burger-bars {
-    background: #373a47;
+    background: var(--textColor);
 }
 
 .bm-cross-button {
@@ -20,12 +20,18 @@
 }
 
 .bm-menu {
-    background-color: #202020;
+    background-color: var(--defaultDarkColor);
     padding: 2.5em 1.5em 0;
     font-size: 1em;
     letter-spacing: 0.03em;
-    font-family: "bebas_neuebold", sans-serif;
+    font-family: "Montserrat", sans-serif;
     text-transform: uppercase;
+    font-weight: 900;
+}
+
+.bm-item-list {
+    display: grid;
+    grid-template-rows: 35% 58% 7%
 }
 
 .bm-menu-wrap {
@@ -45,23 +51,34 @@
 }
 
 .bm-header {
-    color:  #f1f1f1;
-    margin-bottom: 7em;
+    color: var(--defaultLightColor);
+    padding-top: 1em;
 }
 
 .bm-title {
     letter-spacing: 0.03em;
     font-size: 2em;
-    font-weight: lighter;
+    font-weight: 300;
     display: block;
 }
 
-.bm-footer {
-    padding-top: 20em;
+.bm-subtitle {
+    font-weight: 900;
 }
 
-.bm-footer a{
+.bm-cross-button {
+    letter-spacing: 0.03em;
+    font-size: 2em;
+    display: block;
+}
+
+.bm-footer a {
     text-decoration: none;
     color: inherit;
-    padding-left: 0.8em;
+    font-size: 1.2em;
+}
+
+.bm-footer {
+    display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%
 }

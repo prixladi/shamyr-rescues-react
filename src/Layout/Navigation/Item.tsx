@@ -1,5 +1,5 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import './Item.css';
 
@@ -10,14 +10,13 @@ type ItemProps = {
 };
 
 const Item = ({ text, id, path }: ItemProps) => {
-  const history = useHistory();
+  const location = useLocation();
 
-  let classes = "bm-item";
-  if(history.location.pathname === path)
-   classes += " bm-item-active";
+  let classes = 'bm-item';
+  if (location.pathname === path) classes += ' bm-item-active';
 
   return (
-    <a id={id} href={path} className={classes}>
+    <a href={path} id={id} className={classes}>
       {text}
     </a>
   );

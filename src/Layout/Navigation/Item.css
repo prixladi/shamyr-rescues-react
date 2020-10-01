@@ -1,24 +1,21 @@
 .bm-item {
     display: inline-block;
     text-decoration: none;
-    color: #d1d1d1;
-    text-decoration: none;
     font-size: 1.4em;
-    color: #999;
+    color: var(--defaultInactiveColor);
     display: block;
     letter-spacing: 0.03em;
-    font-weight: bold;
-    font-stretch: condensed;
+    font-weight: 1000;
     margin-bottom: 1em;
     border-bottom: 0.09em solid #202020;
     transition: border-bottom 0.6s ease;
-    transform: scale(0.75, 1);
 }
 
 .bm-item:hover {
-    color: #f1f1f1;
+    color: var(--defaultLightColor);
     border-bottom: 0.09em solid #fff;
     transition: border-bottom 0.6s ease;
+    text-decoration: none;
 }
 
 .bm-item:focus {
@@ -26,7 +23,7 @@
 }
 
 .bm-item-active {
-    color: #f1f1f1;
+    color: var(--defaultLightColor);
     border-bottom: 0.09em solid #fff;
     transition: border-bottom 0.6s ease;
 }

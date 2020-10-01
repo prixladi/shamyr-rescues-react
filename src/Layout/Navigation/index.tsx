@@ -2,7 +2,7 @@ import { slide as Menu } from 'react-burger-menu';
 import React from 'react';
 import Item from './Item';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faGithub, faFacebook } from '@fortawesome/free-brands-svg-icons';
+import { faTwitter, faGithub, faFacebook, faInstagram, faPinterest } from '@fortawesome/free-brands-svg-icons';
 import { faPaw } from '@fortawesome/free-solid-svg-icons';
 
 import './index.css';
@@ -25,11 +25,17 @@ const NavigationFooter = () => (
     <a href="https://twitter.com">
       <FontAwesomeIcon icon={faTwitter} border />
     </a>
-    <a href="https://github.com">
-      <FontAwesomeIcon icon={faGithub} border />
-    </a>
     <a href="https://facebook.com">
       <FontAwesomeIcon icon={faFacebook} border />
+    </a>
+    <a href="https://intagram.com">
+      <FontAwesomeIcon icon={faInstagram} border />
+    </a>
+    <a href="https://pinterest.com">
+      <FontAwesomeIcon icon={faPinterest} border />
+    </a>
+    <a href="https://github.com">
+      <FontAwesomeIcon icon={faGithub} border />
     </a>
   </div>
 );
