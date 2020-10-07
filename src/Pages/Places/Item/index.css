@@ -1,0 +1,28 @@
+.placeItem h3 {
+    font-size: 3em;
+    margin-bottom: 0.6em;
+    text-align: center;
+}
+
+.placeItem img {
+    width: 40em;
+    height: 25em;
+}
+
+@media only screen and (max-width: 700px) {
+    .placeItem img {
+        width: 38em;
+        height: 23em;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .placeItem img {
+        width: 20em;
+        height: 11em;
+    }
+
+    .placeItem {
+        justify-self: center;
+    }
+}

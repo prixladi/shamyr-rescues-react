@@ -2,8 +2,8 @@
     margin: auto;
     max-width: 42rem;
     padding-top: 2em;
-    padding-left: 1em;
-    padding-right: 1em;
+    padding-left: 1.6em;
+    padding-right: 1.6em;
     font-family: 'Merriweather', 'Georgia', serif;
 }
 
@@ -19,7 +19,7 @@ h1 {
     width: 1em;
     height: 0.1em;
     left: 0;
-    bottom: 0;
+    bottom: -0.2em;
     background-color: var(--textColor);
     position: absolute;
 }
@@ -70,3 +70,5 @@ blockquote {
     border-left-color: inherit;
     opacity: 0.8;
 }
+
+
