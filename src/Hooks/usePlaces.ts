@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
-import api, { _Places, PlaceModel, PlacesModel } from '../Api';
+import api, { _Places, PlacePreviewModel, PlacesModel } from '../Api';
 
 const limit = 10;
 
-const usePlaces = (prefetch: boolean): [PlaceModel[], boolean, () => Promise<void>] => {
+const usePlaces = (prefetch: boolean): [PlacePreviewModel[], boolean, () => Promise<void>] => {
   const [offset, setOffset] = useState(0);
   const [hasMore, setHasMore] = useState(true);
-  const [places, setPlaces] = useState([] as PlaceModel[]);
+  const [places, setPlaces] = useState([] as PlacePreviewModel[]);
 
   const fetchNext = useCallback(async () => {
     try {
@@ -29,4 +29,4 @@ const usePlaces = (prefetch: boolean): [PlaceModel[], boolean, () => Promise<voi
   return [places, hasMore, fetchNext];
 };
 
-export { usePlaces };
+export default usePlaces;

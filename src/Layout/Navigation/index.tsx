@@ -4,7 +4,6 @@ import Item from './Item';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faGithub, faFacebook, faInstagram, faPinterest } from '@fortawesome/free-brands-svg-icons';
 import { faPaw } from '@fortawesome/free-solid-svg-icons';
-
 import './index.css';
 
 type NavigationProps = {

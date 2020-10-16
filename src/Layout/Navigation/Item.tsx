@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import './Item.css';
 
@@ -9,16 +9,21 @@ type ItemProps = {
   path: string;
 };
 
+const getFirstPart = (path: string) => {
+  const parts = path.split('/');
+  return "/" + parts[1];
+};
+
 const Item = ({ text, id, path }: ItemProps) => {
   const location = useLocation();
 
   let classes = 'bm-item';
-  if (location.pathname === path) classes += ' bm-item-active';
+  if (getFirstPart(location.pathname) === path) classes += ' bm-item-active';
 
   return (
-    <a href={path} id={id} className={classes}>
+    <Link to={path} id={id} className={classes}>
       {text}
-    </a>
+    </Link>
   );
 };
 

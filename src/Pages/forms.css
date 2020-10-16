@@ -1,0 +1,35 @@
+.form .options-01 {
+    margin-bottom: 2.8em;
+}
+
+.form .options-01 input {
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5em;
+}
+
+.form .options-01 .remember-me {
+    color: var(--labelColor);
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    float: left;
+    cursor: pointer;
+}
+
+.form .options-01 a {
+    font-size: 1em;
+    float: right;
+}
+
+.form .options-02 {
+    color: var(--labelColor);
+    font-size: 1em;
+    margin-top: 1.5em;
+}
+
+@media screen and (max-width: 500px) {
+    .form .options-01 a {
+        float: none;
+    }
+}

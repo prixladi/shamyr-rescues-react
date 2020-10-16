@@ -5,14 +5,16 @@ import Footer from '../Footer';
 
 type ContentProps = {
   children: any;
+  hideFooter?: boolean;
 };
 
-const Content = ({ children }: ContentProps) => (
+const Content = ({ children, hideFooter }: ContentProps) => (
   <main id="content">
     <ThemeSwitch />
     {children}
-    <Footer />
+    {hideFooter || <Footer />}
   </main>
 );
+
 
 export default Content;

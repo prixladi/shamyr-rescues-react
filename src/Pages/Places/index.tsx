@@ -1,6 +1,6 @@
 import React from 'react';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { usePlaces } from '../../Hooks/usePlaces';
+import { usePlaces } from '../../Hooks';
 import Item from './Item';
 import './index.css';
 

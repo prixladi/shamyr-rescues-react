@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import { _Places } from '../../Routes';
 import './index.css';
 
 const Home = () => (
@@ -7,11 +9,11 @@ const Home = () => (
     <p>
       This website focuses on spreading awareness about animal rescues in your state. This place is for animal lovers around the world to
       look for places where they can help or donate. It's also for owners and staffers of animal rescues to add their establishments to the
-      list so people can find them.
+      list so people can find them. You can check our <Link to={_Places}>List of places.</Link>
     </p>
 
     <p>
-      <img src="https://hoghavenblog.org/wp-content/uploads/2019/04/Hooligan_Babies-1-1024x683.jpg" alt="aa" />
+      <img src="https://hoghavenblog.org/wp-content/uploads/2019/04/Hooligan_Babies-1-1024x683.jpg" alt="homeImage" />
     </p>
 
     <p>

@@ -1,0 +1,12 @@
+.form {
+    font-family: sans-serif;
+    width: 23em;
+    text-align: center;
+    margin: auto;
+}
+
+@media screen and (max-width: 500px) {
+    .form {
+        width: 95%;
+    }
+}

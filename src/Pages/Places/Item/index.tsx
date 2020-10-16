@@ -1,16 +1,18 @@
 import React from 'react';
-import { PlaceModel } from '../../../Api';
+import { Link } from 'react-router-dom';
+import { PlacePreviewModel } from '../../../Api';
+import { _Places } from '../../../Routes';
 import './index.css';
 
-type ItemProps = { model: PlaceModel };
+type ItemProps = { model: PlacePreviewModel };
 
 const Item = ({ model }: ItemProps) => {
   return (
     <div className="placeItem">
-      <a>
+      <Link to={`${_Places}/${model.id}`}>
         <h3>{model.name}</h3>
-        <img src={model.imageUrl} alt={model.name} />
-      </a>
+      </Link>
+      <p>{model.shortDescription}</p>
     </div>
   );
 };

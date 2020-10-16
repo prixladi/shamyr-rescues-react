@@ -18,4 +18,4 @@ const useTheme: HookType = () => {
   return [theme, toggleTheme];
 };
 
-export { useTheme };
+export default useTheme;
