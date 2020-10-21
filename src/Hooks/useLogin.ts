@@ -1,20 +1,16 @@
 import { useCallback, useState } from 'react';
 import api, { _TokenPassword } from '../Api/Authority';
 
-type data = {
+type Data = {
   email?: string;
   password?: string;
 };
 
 const useLogin = () => {
-  const [data, setData] = useState({} as data);
+  const [data, setData] = useState({} as Data);
 
   const login = useCallback(async () => {
-    try {
-      await api.post(`${_TokenPassword}`, data);
-    } catch (err) {
-      console.log(err);
-    }
+    await api.post(`${_TokenPassword}`, data, undefined, 200);
   }, [data]);
 
   const setEmail = useCallback(

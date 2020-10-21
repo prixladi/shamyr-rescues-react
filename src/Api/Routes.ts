@@ -1,4 +1,6 @@
-const _BaseUrl = 'http://localhost:8000/api';
-const _Places = "places";
+import { ApiConfig } from "../Configs";
+
+const _BaseUrl = ApiConfig.url;
+const _Places = 'places';
 
 export { _BaseUrl, _Places };

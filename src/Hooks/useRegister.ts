@@ -1,5 +1,6 @@
 import { useCallback, useState } from 'react';
 import api, { _Users } from '../Api/Authority';
+import { AuthApiConfig } from '../Configs';
 
 type data = {
   username?: string;
@@ -7,17 +8,14 @@ type data = {
   givenName?: string;
   familyName?: string;
   password?: string;
+  clientId: string;
 };
 
 const useRegister = () => {
-  const [data, setData] = useState({} as data);
+  const [data, setData] = useState({ clientId: AuthApiConfig.clientId } as data);
 
   const register = useCallback(async () => {
-    try {
-      await api.post(`${_Users}`, data);
-    } catch (err) {
-      console.log(err);
-    }
+      await api.post(`${_Users}`, data, undefined, 201);
   }, [data]);
 
   const setUsername = useCallback(

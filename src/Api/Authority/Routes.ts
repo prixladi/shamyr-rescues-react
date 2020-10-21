@@ -1,4 +1,6 @@
-const _BaseUrl = 'http://localhost:8080/api/v1';
+import { AuthApiConfig } from "../../Configs";
+
+const _BaseUrl = AuthApiConfig.url;
 const _TokenPassword = 'token/password';
 const _TokenRefresh = 'token/refresh';
 const _TokenGoogle = 'token/google';
