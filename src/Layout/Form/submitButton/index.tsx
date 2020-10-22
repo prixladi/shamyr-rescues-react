@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 
 export type Props = {
-  value: string
+  value: string;
 };
 
 const SubmitButton = ({ value }: Props) => {

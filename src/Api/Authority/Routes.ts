@@ -1,4 +1,4 @@
-import { AuthApiConfig } from "../../Configs";
+import { AuthApiConfig } from '../../Configs';
 
 const _BaseUrl = AuthApiConfig.url;
 const _TokenPassword = 'token/password';

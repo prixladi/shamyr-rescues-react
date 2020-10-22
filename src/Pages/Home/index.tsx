@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { _Places } from '../../Routes';
-import './index.css';
 
 const Home = () => (
   <>
@@ -27,9 +26,7 @@ const Home = () => (
       permanent home can be found.
     </blockquote>
 
-    <p>
-        But this list is not complete, many animal rescues also provide safe shelter for rescued farm animals.
-    </p>
+    <p>But this list is not complete, many animal rescues also provide safe shelter for rescued farm animals.</p>
   </>
 );
 

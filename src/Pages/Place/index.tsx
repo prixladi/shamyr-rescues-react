@@ -4,7 +4,6 @@ import { usePlace } from '../../Hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperclip, faArrowLeft, faAddressBook } from '@fortawesome/free-solid-svg-icons';
 import { _Places } from '../../Routes';
-import './index.css';
 import { PlaceDetailModel } from '../../Api';
 import useCountries from '../../Hooks/useCountries';
 

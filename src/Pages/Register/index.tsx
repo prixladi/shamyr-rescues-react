@@ -1,27 +1,51 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useRegister } from '../../Hooks';
 import { _SignIn } from '../../Routes';
 import Form from '../../Layout/Form';
 import '../forms.css';
+import { FormikHelpers } from 'formik';
+import { authService } from '../../Services';
+import * as yup from 'yup';
 
 const { PasswordInput, EmailInput, TextInput, SubmitButton } = Form;
 
-const Register = () => {
-  const { register, setEmail, setFamilyName, setGivenName, setPassword, setUsername } = useRegister();
+type Values = {
+  username: string;
+  email: string;
+  password: string;
+  givenName?: string;
+  familyName?: string;
+};
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    await register();
+const InitialValues: Values = {
+  username: '',
+  email: '',
+  password: '',
+  givenName: undefined,
+  familyName: undefined,
+};
+
+const schema = yup.object().shape({
+  username: yup.string().min(6, "Username must be at least 6 characters long.").required("Username is required."),
+  password: yup.string().min(6, "Password must be at least 6 characters long.").required("Password is required."),
+  email: yup.string().email("Invalid email format.").required("Email is required."),
+  givenName: yup.string(),
+  familyName: yup.string(),
+});
+
+const Register = () => {
+  const handleSubmit = async (values: Values, { setErrors }: FormikHelpers<Values>) => {
+    const errors = await authService.register(values);
+    if (errors) setErrors(errors);
   };
 
   return (
-    <Form onSubmit={handleSubmit} title="Register">
-      <TextInput onChange={(event) => setUsername(event.target.value)} placeholder="Username" required />
-      <EmailInput onChange={(event) => setEmail(event.target.value)} required />
-      <TextInput onChange={(event) => setGivenName(event.target.value)} placeholder="Given Name (Optional)" />
-      <TextInput onChange={(event) => setFamilyName(event.target.value)} placeholder="Family Name (Optional)" />
-      <PasswordInput onChange={(event) => setPassword(event.target.value)} required />
+    <Form<Values> validationSchema={schema} initialValues={InitialValues} onSubmit={handleSubmit} title="Register">
+      <TextInput name="username" placeholder="Username" required />
+      <EmailInput name="email" required />
+      <TextInput name="givenName" placeholder="Given Name (Optional)" />
+      <TextInput name="familyName" placeholder="Family Name (Optional)" />
+      <PasswordInput name="password" required />
       <SubmitButton value="Register" />
       <div className="options-02">
         <p>

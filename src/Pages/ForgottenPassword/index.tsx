@@ -1,23 +1,33 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useForgottenPassword } from '../../Hooks';
 import { _SignIn } from '../../Routes';
 import Form from '../../Layout/Form';
 import '../forms.css';
+import { authService } from '../../Services';
+import * as yup from 'yup';
 
 const { EmailInput, SubmitButton } = Form;
 
-const ForgottenPassword = () => {
-  const { setEmail, send } = useForgottenPassword();
+type Values = {
+  email: string;
+};
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    await send();
+const InitialValues: Values = {
+  email: '',
+};
+
+const schema = yup.object().shape({
+  email: yup.string().email('Invalid email format.').required('Email is required.'),
+});
+
+const ForgottenPassword = () => {
+  const handleSubmit = async (values: Values) => {
+    await authService.sendForgottenPassword(values.email);
   };
 
   return (
-    <Form onSubmit={handleSubmit} title="Forgotten password">
-      <EmailInput onChange={(event) => setEmail(event.target.value)} placeholder="Email Address" required />
+    <Form<Values> validationSchema={schema} initialValues={InitialValues} onSubmit={handleSubmit} title="Forgotten password">
+      <EmailInput name="email" placeholder="Email Address" required />
       <SubmitButton value="Send" />
       <div className="options-02">
         <p>

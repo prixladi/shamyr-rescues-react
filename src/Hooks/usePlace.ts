@@ -14,7 +14,7 @@ const usePlace = (id: number): PlaceDetailModel | null => {
   }, [id]);
 
   useEffect(() => {
-     fetch();
+    fetch();
   }, [fetch]);
 
   return place;

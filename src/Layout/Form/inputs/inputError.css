@@ -1,0 +1,5 @@
+.form .inputError {
+    font-size: 0.8em;
+    color: var(--defaultErrorColor);
+    margin-top: 1em;
+}

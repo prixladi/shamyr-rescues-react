@@ -1,14 +1,12 @@
-import React, { ChangeEventHandler } from 'react';
+import React, { InputHTMLAttributes } from 'react';
 import InputBase from './inputBase';
 
-interface Props {
-  onChange: ChangeEventHandler<HTMLInputElement>;
+type Props = InputHTMLAttributes<HTMLInputElement> & {
+  name: string;
   required?: boolean;
   placeholder: string;
-}
-
-const textInput = ({ ...rest }: Props) => {
-  return <InputBase type="text" {...rest} />;
 };
+
+const textInput = ({ ...rest }: Props) => <InputBase type="text" {...rest} />;
 
 export default textInput;

@@ -1,14 +1,12 @@
-import React, { ChangeEventHandler } from 'react';
+import React, { InputHTMLAttributes } from 'react';
 import InputBase from './inputBase';
 
-interface Props {
-  onChange: ChangeEventHandler<HTMLInputElement>;
+type Props = InputHTMLAttributes<HTMLInputElement> & {
+  name: string;
   required?: boolean;
   placeholder?: string;
-}
-
-const passwordInput = ({ placeholder, ...rest }: Props) => {
-  return <InputBase type="password" placeholder={placeholder || 'Password'} {...rest} />;
 };
+
+const passwordInput = ({ placeholder, ...rest }: Props) => <InputBase type="password" placeholder={placeholder || 'Password'} {...rest} />;
 
 export default passwordInput;

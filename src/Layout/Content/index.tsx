@@ -16,5 +16,4 @@ const Content = ({ children, hideFooter }: ContentProps) => (
   </main>
 );
 
-
 export default Content;

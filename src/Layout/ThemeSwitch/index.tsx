@@ -8,7 +8,7 @@ const ThemeSwitch = () => {
   return (
     <div className="container">
       <label id="switch" className="switch">
-        <input type="checkbox" id="slider" onChange={() => toggleTheme()} defaultChecked={theme === "dark"} />
+        <input type="checkbox" id="slider" onChange={() => toggleTheme()} defaultChecked={theme === 'dark'} />
         <span className="slider round" />
       </label>
     </div>

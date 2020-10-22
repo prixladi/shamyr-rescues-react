@@ -1,25 +1,40 @@
-import React, { FormEvent } from 'react';
+import { FormikHelpers } from 'formik';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useLogin } from '../../Hooks';
 import Form from '../../Layout/Form';
 import { _ForgottenPassword, _Register } from '../../Routes';
+import { authService } from '../../Services';
+import * as yup from 'yup';
 import '../forms.css';
 
 const { PasswordInput, EmailInput, SubmitButton } = Form;
 
-const Login = () => {
-  const { setEmail, setPassword, login } = useLogin();
+type Values = {
+  email: string;
+  password: string;
+};
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    await login();
+const InitialValues: Values = {
+  email: '',
+  password: '',
+};
+
+const schema = yup.object().shape({
+  email: yup.string().email('Invalid email format.').required('Email is required.'),
+  password: yup.string().min(6, "Password must be at least 6 characters long.").required("Password is required."),
+});
+
+const Login = () => {
+  const handleSubmit = async (values: Values, { setErrors }: FormikHelpers<Values>) => {
+    const errors = await authService.login(values);
+    if (errors) setErrors(errors);
   };
 
   return (
     <>
-      <Form title="Sign in" onSubmit={handleSubmit}>
-        <EmailInput required onChange={(event) => setEmail(event.target.value)} />
-        <PasswordInput required onChange={(event) => setPassword(event.target.value)} />
+      <Form<Values> validationSchema={schema} initialValues={InitialValues} title="Sign in" onSubmit={handleSubmit}>
+        <EmailInput required name="email" />
+        <PasswordInput required name="password" />
         <div className="options-01">
           <label className="remember-me">
             <input type="checkbox" />
@@ -29,9 +44,7 @@ const Login = () => {
         </div>
         <SubmitButton value="Login" />
         <div className="options-02">
-          <p>
             Not Registered? <Link to={_Register}>Create an Account</Link>
-          </p>
         </div>
       </Form>
     </>

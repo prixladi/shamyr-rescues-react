@@ -11,7 +11,7 @@ type ItemProps = {
 
 const getFirstPart = (path: string) => {
   const parts = path.split('/');
-  return "/" + parts[1];
+  return '/' + parts[1];
 };
 
 const Item = ({ text, id, path }: ItemProps) => {
