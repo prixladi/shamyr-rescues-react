@@ -19,7 +19,7 @@ const InputBase = ({ required, type, placeholder, ...rest }: Props) => {
 
   return (
     <div className="field-wrapper">
-      <Field type={type} name={field.name} id={field.name} placeholder={placeholder} className={className} required={required} />
+      <Field type={type} name={field.name} id={field.name} placeholder={placeholder} className={className} required={required} autoComplete='on' />
       <InputError error={error} />
     </div>
   );

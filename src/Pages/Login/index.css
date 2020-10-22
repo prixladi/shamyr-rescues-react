@@ -1,0 +1,25 @@
+.remember-me {
+    color: var(--labelColor);
+    font-size: 1em;
+    display: flex;
+    align-items: center;
+    float: left;
+    cursor: pointer;
+}
+
+.remember-me input {
+    width: 1em;
+    height: 1em;
+    margin-right: 0.5em;
+}
+
+.right {
+    font-size: 1em;
+    float: right;
+}
+
+@media screen and (max-width: 500px) {
+    .right {
+        float: none;
+    }
+}

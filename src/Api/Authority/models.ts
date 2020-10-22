@@ -10,3 +10,8 @@ export type NewUserModel = {
   givenName?: string;
   familyName?: string;
 };
+
+export type TokensModel = {
+  bearerToken: string;
+  refreshToken: string;
+};

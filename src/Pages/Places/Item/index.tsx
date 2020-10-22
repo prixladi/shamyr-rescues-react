@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { PlacePreviewModel } from '../../../Api';
-import { _Places } from '../../../Routes';
+import { _Places } from '../../../Navigation/Routes';
 import './index.css';
 
 type ItemProps = { model: PlacePreviewModel };

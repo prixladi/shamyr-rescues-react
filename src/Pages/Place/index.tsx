@@ -3,15 +3,15 @@ import { Link, useRouteMatch } from 'react-router-dom';
 import { usePlace } from '../../Hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaperclip, faArrowLeft, faAddressBook } from '@fortawesome/free-solid-svg-icons';
-import { _Places } from '../../Routes';
+import { _Places } from '../../Navigation/Routes';
 import { PlaceDetailModel } from '../../Api';
 import useCountries from '../../Hooks/useCountries';
 
-type FooterProps = {
+type Props = {
   place: PlaceDetailModel;
 };
 
-const Footer = ({ place }: FooterProps) => {
+const Footer = ({ place }: Props) => {
   const { getName } = useCountries();
   const countryName = getName(place.countryCode);
 

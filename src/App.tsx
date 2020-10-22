@@ -1,24 +1,22 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Overlay } from './Layout';
+import { _Home, _Places, _Place, _SignIn, _Register, _ForgottenPassword, _Profile } from './Navigation/Routes';
+import Navigation from './Navigation';
 import Home from './Pages/Home';
 import Places from './Pages/Places';
 import Place from './Pages/Place';
 import Login from './Pages/Login';
 import Register from './Pages/Register';
 import ForgottenPassword from './Pages/ForgottenPassword';
-import { _Home, _Places, _Place, _SignIn, _Register, _ForgottenPassword } from './Routes';
+import Profile from './Pages/Profile';
 
-const { Navigation, Content } = Overlay;
+const { Content } = Overlay;
 
 const App = () => (
   <BrowserRouter>
     <Overlay>
-      <Navigation>
-        <Navigation.Item text="Home" id="home" path={_Home} />
-        <Navigation.Item text="Places" id="places" path={_Places} />
-        <Navigation.Item text="Sign in" id="signIn" path={_SignIn} />
-      </Navigation>
+      <Navigation />
 
       <Switch>
         <Route path="/" exact>
@@ -58,6 +56,12 @@ const App = () => (
         <Route path={_ForgottenPassword} exact>
           <Content hideFooter>
             <ForgottenPassword />
+          </Content>
+        </Route>
+
+        <Route path={_Profile} exact>
+          <Content hideFooter>
+            <Profile />
           </Content>
         </Route>
       </Switch>
