@@ -41,17 +41,19 @@ const Register = () => {
   };
 
   return (
-    <Form<Values> validationSchema={schema} initialValues={InitialValues} onSubmit={handleSubmit} title="Register">
-      <TextInput name="username" placeholder="Username" required />
-      <EmailInput name="email" required />
-      <TextInput name="givenName" placeholder="Given Name (Optional)" />
-      <TextInput name="familyName" placeholder="Family Name (Optional)" />
-      <PasswordInput name="password" required />
-      <SubmitButton value="Register" />
-      <Options>
-        Already Registered? <Link to={_SignIn}>Sign In</Link>
-      </Options>
-    </Form>
+    <div id="register-page">
+      <Form<Values> validationSchema={schema} initialValues={InitialValues} onSubmit={handleSubmit} title="Register">
+        <TextInput name="username" placeholder="Username" required />
+        <EmailInput name="email" required />
+        <TextInput name="givenName" placeholder="Given Name (Optional)" />
+        <TextInput name="familyName" placeholder="Family Name (Optional)" />
+        <PasswordInput name="password" required />
+        <SubmitButton value="Register" />
+        <Options>
+          Already Registered? <Link to={_SignIn}>Sign In</Link>
+        </Options>
+      </Form>
+    </div>
   );
 };
 

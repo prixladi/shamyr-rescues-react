@@ -60,7 +60,7 @@ const App = () => (
         </Route>
 
         <Route path={_Profile} exact>
-          <Content hideFooter>
+          <Content>
             <Profile />
           </Content>
         </Route>

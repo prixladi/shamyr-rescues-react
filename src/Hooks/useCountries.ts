@@ -1,9 +1,10 @@
+import { useCallback } from 'react';
 import countries from '../Data/countriesData.json';
 
-type Disctionary = { [id: string]: string };
+type Dictionary = { [id: string]: string };
 
-const nameByCodes: Disctionary = {};
-const codeByNames: Disctionary = {};
+const nameByCodes: Dictionary = {};
+const codeByNames: Dictionary = {};
 
 const initCountries = () => {
   countries.forEach((entry) => {
@@ -15,13 +16,13 @@ const initCountries = () => {
 initCountries();
 
 const useCountries = () => {
-  const getName = (code: string) => {
+  const getName = useCallback((code: string) => {
     return nameByCodes[code];
-  };
+  }, []);
 
-  const getCode = (name: string) => {
+  const getCode = useCallback((name: string) => {
     return codeByNames[name];
-  };
+  }, []);
 
   return { getName, getCode };
 };

@@ -27,13 +27,15 @@ const ForgottenPassword = () => {
   };
 
   return (
-    <Form<Values> validationSchema={schema} initialValues={InitialValues} onSubmit={handleSubmit} title="Forgotten password">
-      <EmailInput name="email" placeholder="Email Address" required />
-      <SubmitButton value="Send" />
-      <Options>
-        Remebered? <Link to={_SignIn}>Sign in</Link>
-      </Options>
-    </Form>
+    <div id="forgotten-password-page">
+      <Form<Values> validationSchema={schema} initialValues={InitialValues} onSubmit={handleSubmit} title="Forgotten password">
+        <EmailInput name="email" placeholder="Email Address" required />
+        <SubmitButton value="Send" />
+        <Options>
+          Remebered? <Link to={_SignIn}>Sign in</Link>
+        </Options>
+      </Form>
+    </div>
   );
 };
 

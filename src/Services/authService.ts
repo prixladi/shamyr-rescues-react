@@ -11,23 +11,26 @@ const register = async function (model: NewUserModel, history: History) {
   if (result?.status === 409) {
     const message = result.data.Message as string;
     if (message.includes('email')) return { email: 'User with this email already exists.' };
+    
     return { username: 'User with this username already exists.' };
   }
 
-  history.push(_SignIn);
+  if (result) history.push(_SignIn);
 };
 
 const login = async (model: PasswordLoginModel, history: History) => {
   const result = await api.post<TokensModel>(`${_TokenPassword}`, model, { history, expectedStatus: [200, 400] });
 
-  if (result?.status !== 200)
+  if (result && result.status !== 200)
     return {
       email: 'Invalid email or password',
       password: 'Invalid email or password',
     };
 
-  setTokens(result.data);
-  history.push(_Profile);
+  if (result) {
+    setTokens(result.data);
+    history.push(_Profile);
+  }
 };
 
 const logout = (history: History) => {

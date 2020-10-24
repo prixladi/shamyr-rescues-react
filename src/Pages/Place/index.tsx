@@ -16,29 +16,31 @@ const Footer = ({ place }: Props) => {
   const countryName = getName(place.countryCode);
 
   return (
-    <p>
-      {place.websiteUrl && (
-        <>
-          <a href={place.websiteUrl}>
-            <FontAwesomeIcon icon={faPaperclip} /> Website
-          </a>
-          <br />
-        </>
-      )}
+    <div id="place-page">
+      <p>
+        {place.websiteUrl && (
+          <>
+            <a href={place.websiteUrl}>
+              <FontAwesomeIcon icon={faPaperclip} /> Website
+            </a>
+            <br />
+          </>
+        )}
 
-      {place.address && (
-        <>
-          <a href={`http://maps.google.com/?q=${place.address}+${countryName}`}>
-            <FontAwesomeIcon icon={faAddressBook} /> {place.address}, {countryName}
-          </a>
-          <br />
-        </>
-      )}
+        {place.address && (
+          <>
+            <a href={`http://maps.google.com/?q=${place.address}+${countryName}`}>
+              <FontAwesomeIcon icon={faAddressBook} /> {place.address}, {countryName}
+            </a>
+            <br />
+          </>
+        )}
 
-      <Link to={_Places}>
-        <FontAwesomeIcon icon={faArrowLeft} /> Back to places
-      </Link>
-    </p>
+        <Link to={_Places}>
+          <FontAwesomeIcon icon={faArrowLeft} /> Back to places
+        </Link>
+      </p>
+    </div>
   );
 };
 

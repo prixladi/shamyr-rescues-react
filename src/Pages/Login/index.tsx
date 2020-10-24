@@ -37,7 +37,7 @@ const Login = () => {
   );
 
   return (
-    <>
+    <div id="login-page">
       <Form<Values> validationSchema={schema} initialValues={InitialValues} title="Sign in" onSubmit={handleSubmit}>
         <EmailInput required name="email" />
         <PasswordInput required name="password" />
@@ -55,7 +55,7 @@ const Login = () => {
           Not Registered? <Link to={_Register}>Create an Account</Link>
         </Options>
       </Form>
-    </>
+    </div>
   );
 };
 

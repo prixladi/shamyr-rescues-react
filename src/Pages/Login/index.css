@@ -1,4 +1,4 @@
-.remember-me {
+#login-page .remember-me {
     color: var(--labelColor);
     font-size: 1em;
     display: flex;
@@ -7,19 +7,19 @@
     cursor: pointer;
 }
 
-.remember-me input {
+#login-page .remember-me input {
     width: 1em;
     height: 1em;
     margin-right: 0.5em;
 }
 
-.right {
+#login-page .right {
     font-size: 1em;
     float: right;
 }
 
 @media screen and (max-width: 500px) {
-    .right {
+    #login-page .right {
         float: none;
     }
 }

@@ -1,34 +1,54 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useReducer } from 'react';
 import { useHistory } from 'react-router-dom';
 import api, { _Places, PlacePreviewModel, PlacesModel } from '../Api';
 
 const limit = 10;
 
+type State = {
+  places: PlacePreviewModel[];
+  hasMore: boolean;
+};
+
+type Action = {
+  model: PlacesModel;
+};
+
+const reducer = (state: State, action: Action): State => {
+  const allPlaces = [...state.places, ...action.model.places];
+
+  return {
+    places: [...state.places, ...action.model.places],
+    hasMore: allPlaces.length < action.model.count,
+  };
+};
+
 const usePlaces = (prefetch: boolean): [PlacePreviewModel[], boolean, () => Promise<void>] => {
-  const [offset, setOffset] = useState(0);
-  const [hasMore, setHasMore] = useState(true);
-  const [places, setPlaces] = useState([] as PlacePreviewModel[]);
+  const [state, dispatchPlaces] = useReducer(reducer, { places: [], hasMore: true });
   const history = useHistory();
 
   const fetchNext = useCallback(async () => {
     try {
-      const response = await api.get<PlacesModel>(_Places, { params: { offset, limit }, history, expectedStatus: [200] });
-      if (!response) return;
+      const response = await api.get<PlacesModel>(_Places, {
+        params: { offset: state.places.length, limit },
+        history,
+        expectedStatus: [200],
+      });
 
-      const allPlaces = places.concat(response.data.places);
-      setPlaces(allPlaces);
-      setHasMore(places.length < response.data.count);
-      setOffset(offset + limit);
+      if (response) {
+        dispatchPlaces({ model: response.data });
+      }
     } catch (err) {
       console.log(err);
     }
-  }, [offset, places, history]);
+  }, [state, dispatchPlaces, history]);
 
   useEffect(() => {
-    if (prefetch && places.length === 0 && hasMore) fetchNext();
-  }, [prefetch, places, hasMore, fetchNext]);
+    if (prefetch && state.places.length === 0 && state.hasMore) {
+      fetchNext();
+    }
+  }, [prefetch, state, fetchNext]);
 
-  return [places, hasMore, fetchNext];
+  return [state.places, state.hasMore, fetchNext];
 };
 
 export default usePlaces;

@@ -8,7 +8,7 @@ type ItemProps = { model: PlacePreviewModel };
 
 const Item = ({ model }: ItemProps) => {
   return (
-    <div className="placeItem">
+    <div className="place-item">
       <Link to={`${_Places}/${model.id}`}>
         <h3>{model.name}</h3>
       </Link>

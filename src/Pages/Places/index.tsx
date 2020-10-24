@@ -7,7 +7,7 @@ const Places = () => {
   const [places, hasMore, fetchNext] = usePlaces(true);
 
   return (
-    <>
+    <div id="places-page">
       <h1 className="label">List of registered places</h1>
       <InfiniteScroll
         style={{ overflow: 'hidden' }}
@@ -21,7 +21,7 @@ const Places = () => {
           <Item model={place} />
         ))}
       </InfiniteScroll>
-    </>
+    </div>
   );
 };
 

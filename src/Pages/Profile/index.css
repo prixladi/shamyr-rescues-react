@@ -1,8 +1,20 @@
-#content h1.center {
+#profile-page p {
+    font-size: 1.7em;
     text-align: center;
 }
 
-#content p.center {
+#profile-page .user-places {
+    border-top: 0.01em solid;
+    margin-top: 5em;
+}
+
+#profile-page profile-data {
+    border-top: 0.01em solid;
+    margin-top: 5em;
     text-align: center;
-    font-size: 1.7em;
+}
+
+
+#profile-page h1 {
+    text-align: center;
 }
