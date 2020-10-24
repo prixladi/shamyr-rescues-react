@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import api, { _Places, PlaceDetailModel } from '../Api';
+import api, { _Place, PlaceDetailModel } from '../Api';
 
 const usePlace = (id: number): PlaceDetailModel | null => {
   const [place, setPlace] = useState(null as PlaceDetailModel | null);
@@ -8,7 +8,7 @@ const usePlace = (id: number): PlaceDetailModel | null => {
 
   const fetch = useCallback(async () => {
     try {
-      const response = await api.get<PlaceDetailModel>(`${_Places}/${id}`, { history, expectedStatus: [200] });
+      const response = await api.get<PlaceDetailModel>(_Place(id), { history, expectedStatus: [200] });
       if (response) setPlace(response.data);
     } catch (err) {
       console.log(err);

@@ -35,7 +35,7 @@ const App = () => (
           </Content>
         </Route>
 
-        <Route path={_Place} exact>
+        <Route path={_Place(':placeId')} exact>
           <Content>
             <Place />
           </Content>
