@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInput, EmailInput, PasswordInput, Textarea, Select } from './Inputs';
 import { Formik, Form as FormikForm, FormikHelpers } from 'formik';
-import { SubmitButton, Button} from './Buttons';
+import { SubmitButton, Button } from './Buttons';
 import './index.css';
 import Options from './Options';
 

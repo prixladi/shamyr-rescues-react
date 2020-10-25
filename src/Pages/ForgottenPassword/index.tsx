@@ -33,7 +33,9 @@ const ForgottenPassword = () => {
     <div id="forgotten-password-page">
       <Form<Values> validationSchema={schema} initialValues={InitialValues} onSubmit={handleSubmit} title="Forgotten password">
         <EmailInput name="email" placeholder="Email Address" required />
-        <SubmitButton>Send <FontAwesomeIcon icon={faEnvelope} /></SubmitButton>
+        <SubmitButton>
+          Send <FontAwesomeIcon icon={faEnvelope} />
+        </SubmitButton>
         <Options>
           Remebered? <Link to={_SignIn}>Sign in</Link>
         </Options>

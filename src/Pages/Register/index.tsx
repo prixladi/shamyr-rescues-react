@@ -28,8 +28,8 @@ const InitialValues: Values = {
 };
 
 const schema = yup.object().shape({
-  username: yup.string().min(6, tooShortText("Username", 6)).required(requiredText('Username')),
-  password: yup.string().min(6, tooShortText("Password", 6)).required(requiredText('Password')),
+  username: yup.string().min(6, tooShortText('Username', 6)).required(requiredText('Username')),
+  password: yup.string().min(6, tooShortText('Password', 6)).required(requiredText('Password')),
   email: yup.string().email('Invalid email format.').required(requiredText('Email')),
   givenName: yup.string(),
   familyName: yup.string(),

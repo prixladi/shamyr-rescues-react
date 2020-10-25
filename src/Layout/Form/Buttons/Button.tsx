@@ -6,7 +6,7 @@ export type Props = {
   children?: React.ReactNode;
 };
 
-const SubmitButton = ({  onClick, children }: Props) => {
+const SubmitButton = ({ onClick, children }: Props) => {
   return (
     <button className="btn" onClick={onClick}>
       {children}

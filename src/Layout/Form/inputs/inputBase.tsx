@@ -13,13 +13,20 @@ export type Props = InputHTMLAttributes<HTMLInputElement> & {
 const InputBase = ({ required, type, placeholder, ...rest }: Props) => {
   const [field, { error }] = useField(rest);
 
-  let className = "user-input";
-  if(error)
-    className += " error-input"
+  let className = 'user-input';
+  if (error) className += ' error-input';
 
   return (
     <div className="field-wrapper">
-      <Field type={type} name={field.name} id={field.name} placeholder={placeholder} className={className} required={required} autoComplete='on' />
+      <Field
+        type={type}
+        name={field.name}
+        id={field.name}
+        placeholder={placeholder}
+        className={className}
+        required={required}
+        autoComplete="on"
+      />
       <InputError error={error} />
     </div>
   );

@@ -19,7 +19,8 @@ const PlaceExampleNew = () => {
         initialValues={data}
       >
         <p>
-          This is example of creating/editing place. Using button bellow you can check preview. You can edit individual attributes and it will be manifested in preview.
+          This is example of creating/editing place. Using button bellow you can check preview. You can edit individual attributes and it
+          will be manifested in preview.
         </p>
       </PlaceForm>
     </div>
