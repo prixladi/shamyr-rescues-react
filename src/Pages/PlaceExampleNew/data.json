@@ -1,0 +1,12 @@
+{
+    "name": "Example rescue",
+    "shortDescription": "Short description is preview that is shown in place list.",
+    "countryCode": "CZ",
+    "address": "111 Wells St. Shelby, North Carolina(NC), 28150",
+    "description1": "Fist part of description that will be shown on the top of screen. You should use it to show most important informations about rescue. For example what animals are accommodated there",
+    "description2": "Second part of description this will will be shown below first image. You can use it to write for whatever you want but it should be related to rescue.",
+    "description3": "Third part of description this will will be shown below first image. You can use it to write for whatever you want but it should be related to rescue.",
+    "websiteUrl": "http://ladislavprix.cz",
+    "imageUrl": "https://www.corfu-donkeys.com/images/donkeyhomepage/4.jpg",
+    "quote": "Quote about rescue that will be displayed between second and third part of description."
+}

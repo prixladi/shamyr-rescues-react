@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes } from 'react';
-import InputBase from './inputBase';
+import InputBase from './InputBase';
 
 type Props = InputHTMLAttributes<HTMLInputElement> & {
   name: string;
@@ -7,6 +7,6 @@ type Props = InputHTMLAttributes<HTMLInputElement> & {
   placeholder: string;
 };
 
-const textInput = ({ ...rest }: Props) => <InputBase type="text" {...rest} />;
+const TextInput = ({ ...rest }: Props) => <InputBase type="text" {...rest} />;
 
-export default textInput;
+export default TextInput;

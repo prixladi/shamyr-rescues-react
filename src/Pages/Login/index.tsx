@@ -5,7 +5,11 @@ import Form from '../../Layout/Form';
 import { _ForgottenPassword, _Register } from '../../Navigation/Routes';
 import { authService } from '../../Services';
 import * as yup from 'yup';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import GoogleLogin from './GoogleLogin';
 import './index.css';
+import { requiredText, tooShortText } from '../../Utils/Validation';
 
 const { PasswordInput, EmailInput, SubmitButton, Options } = Form;
 
@@ -19,9 +23,9 @@ const InitialValues: Values = {
   password: '',
 };
 
-const schema = yup.object().shape({
-  email: yup.string().email('Invalid email format.').required('Email is required.'),
-  password: yup.string().min(6, 'Password must be at least 6 characters long.').required('Password is required.'),
+const schema = yup.object().shape<Values>({
+  email: yup.string().email('Invalid email format.').required(requiredText('Email')),
+  password: yup.string().min(6, tooShortText('Password', 6)).required(requiredText('Password')),
 });
 
 const Login = () => {
@@ -29,7 +33,7 @@ const Login = () => {
 
   const handleSubmit = useCallback(
     async (values: Values, { setErrors }: FormikHelpers<Values>) => {
-      const errors = await authService.login(values, history);
+      const errors = await authService.passwordLogin(values, history);
 
       if (errors) setErrors(errors);
     },
@@ -50,7 +54,10 @@ const Login = () => {
             Forgot your password?
           </Link>
         </Options>
-        <SubmitButton value="Login" />
+        <SubmitButton>
+          Login with Email <FontAwesomeIcon icon={faEnvelope} />
+        </SubmitButton>
+        <GoogleLogin />
         <Options>
           Not Registered? <Link to={_Register}>Create an Account</Link>
         </Options>

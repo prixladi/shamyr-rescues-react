@@ -1,5 +1,7 @@
-import EmailInput from './emailInput';
-import PasswordInput from './passwordInput';
-import TextInput from './textInput';
+import EmailInput from './EmailInput';
+import PasswordInput from './PasswordInput';
+import TextInput from './TextInput';
+import Textarea from './Textarea';
+import Select from './Select';
 
-export { EmailInput, PasswordInput, TextInput };
+export { EmailInput, PasswordInput, TextInput, Textarea, Select };

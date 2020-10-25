@@ -20,20 +20,18 @@ const Profile = () => {
   return (
     <div id="profile-page">
       <div className="profile-data">
-        <h1>
-          User's Profile
-        </h1>
+        <h1>User's Profile</h1>
         <p>
           <span>{user.username}</span>
           <br />
           <span>{user.email}</span>
         </p>
         <Form initialValues={{}} onSubmit={() => authService.logout(history)}>
-          <SubmitButton value="Logout" />
+          <SubmitButton>Logout</SubmitButton>
         </Form>
       </div>
       <div className="user-places">
-        <UserPlaces />
+        <UserPlaces userId={user.id} />
       </div>
     </div>
   );

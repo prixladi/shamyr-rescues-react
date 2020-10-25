@@ -1,15 +1,33 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { Overlay } from './Layout';
-import { _Home, _Places, _Place, _SignIn, _Register, _ForgottenPassword, _Profile } from './Navigation/Routes';
+import {
+  _Home,
+  _Places,
+  _Place,
+  _SignIn,
+  _Register,
+  _ForgottenPassword,
+  _Profile,
+  _PlaceNew,
+  _PlaceEdit,
+  _PlaceExampleNew,
+  _PlaceExample,
+} from './Navigation/Routes';
+import {
+  Home,
+  Places,
+  Place,
+  Login,
+  Register,
+  ForgottenPassword,
+  Profile,
+  NewPlace,
+  EditPlace,
+  PlaceExampleNew,
+  PlaceExample,
+} from './Pages';
 import Navigation from './Navigation';
-import Home from './Pages/Home';
-import Places from './Pages/Places';
-import Place from './Pages/Place';
-import Login from './Pages/Login';
-import Register from './Pages/Register';
-import ForgottenPassword from './Pages/ForgottenPassword';
-import Profile from './Pages/Profile';
 
 const { Content } = Overlay;
 
@@ -29,15 +47,39 @@ const App = () => (
           </Content>
         </Route>
 
-        <Route path={_Places} exact>
+        <Route path={_PlaceNew} exact>
+          <Content hideFooter>
+            <NewPlace />
+          </Content>
+        </Route>
+
+        <Route path={_PlaceExample} exact>
           <Content>
-            <Places />
+            <PlaceExample />
+          </Content>
+        </Route>
+
+        <Route path={_PlaceEdit(':placeId')} exact>
+          <Content hideFooter>
+            <EditPlace />
           </Content>
         </Route>
 
         <Route path={_Place(':placeId')} exact>
           <Content>
             <Place />
+          </Content>
+        </Route>
+
+        <Route path={_Places} exact>
+          <Content>
+            <Places />
+          </Content>
+        </Route>
+
+        <Route path={_PlaceExampleNew} exact>
+          <Content hideFooter>
+            <PlaceExampleNew />
           </Content>
         </Route>
 

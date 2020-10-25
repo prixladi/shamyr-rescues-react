@@ -5,6 +5,9 @@ import Form from '../../Layout/Form';
 import { FormikHelpers } from 'formik';
 import { authService } from '../../Services';
 import * as yup from 'yup';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { requiredText, tooShortText } from '../../Utils/Validation';
 
 const { PasswordInput, EmailInput, TextInput, SubmitButton, Options } = Form;
 
@@ -25,9 +28,9 @@ const InitialValues: Values = {
 };
 
 const schema = yup.object().shape({
-  username: yup.string().min(6, 'Username must be at least 6 characters long.').required('Username is required.'),
-  password: yup.string().min(6, 'Password must be at least 6 characters long.').required('Password is required.'),
-  email: yup.string().email('Invalid email format.').required('Email is required.'),
+  username: yup.string().min(6, tooShortText("Username", 6)).required(requiredText('Username')),
+  password: yup.string().min(6, tooShortText("Password", 6)).required(requiredText('Password')),
+  email: yup.string().email('Invalid email format.').required(requiredText('Email')),
   givenName: yup.string(),
   familyName: yup.string(),
 });
@@ -48,7 +51,9 @@ const Register = () => {
         <TextInput name="givenName" placeholder="Given Name (Optional)" />
         <TextInput name="familyName" placeholder="Family Name (Optional)" />
         <PasswordInput name="password" required />
-        <SubmitButton value="Register" />
+        <SubmitButton>
+          Register <FontAwesomeIcon icon={faUser} />
+        </SubmitButton>
         <Options>
           Already Registered? <Link to={_SignIn}>Sign In</Link>
         </Options>

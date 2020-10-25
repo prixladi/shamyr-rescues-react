@@ -1,16 +1,21 @@
 import { useCallback } from 'react';
 import countries from '../Data/countriesData.json';
 
-type Dictionary = { [id: string]: string };
+type Dictionary = Object & { [id: string]: string };
 
 const nameByCodes: Dictionary = {};
 const codeByNames: Dictionary = {};
+let asOptionSorted: { key: string; value: string }[];
 
 const initCountries = () => {
   countries.forEach((entry) => {
     nameByCodes[entry.code] = entry.name;
     codeByNames[entry.name] = entry.code;
   });
+
+  asOptionSorted = countries
+    .map((country) => ({ key: country.code, value: country.name }))
+    .sort((a, b) => ('' + a.value).localeCompare(b.value));
 };
 
 initCountries();
@@ -24,7 +29,9 @@ const useCountries = () => {
     return codeByNames[name];
   }, []);
 
-  return { getName, getCode };
+  const getAsOptions = useCallback(() => asOptionSorted, []);
+
+  return { getName, getCode, getAsOptions };
 };
 
 export default useCountries;

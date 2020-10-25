@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useReducer } from 'react';
 import { useHistory } from 'react-router-dom';
-import api, { _Places, PlacePreviewModel, PlacesModel } from '../Api';
+import { PlacePreviewModel, PlacesModel } from '../Api';
+import { placesService } from '../Services';
 
 const limit = 10;
 
@@ -22,25 +23,16 @@ const reducer = (state: State, action: Action): State => {
   };
 };
 
-const usePlaces = (prefetch: boolean): [PlacePreviewModel[], boolean, () => Promise<void>] => {
+const usePlaces = (prefetch: boolean, userId?: string): [PlacePreviewModel[], boolean, () => Promise<void>] => {
   const [state, dispatchPlaces] = useReducer(reducer, { places: [], hasMore: true });
   const history = useHistory();
 
   const fetchNext = useCallback(async () => {
-    try {
-      const response = await api.get<PlacesModel>(_Places, {
-        params: { offset: state.places.length, limit },
-        history,
-        expectedStatus: [200],
-      });
-
-      if (response) {
-        dispatchPlaces({ model: response.data });
-      }
-    } catch (err) {
-      console.log(err);
+    const places = await placesService.getByQuery({ offset: state.places.length, limit, userId }, history);
+    if (places) {
+      dispatchPlaces({ model: places });
     }
-  }, [state, dispatchPlaces, history]);
+  }, [state, dispatchPlaces, history, userId]);
 
   useEffect(() => {
     if (prefetch && state.places.length === 0 && state.hasMore) {

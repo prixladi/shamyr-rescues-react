@@ -2,7 +2,7 @@ import React from 'react';
 import './index.css';
 
 type Props = {
-    children: any;
+    children: React.ReactNode;
 }
 
 const Options = ({ children }: Props) => <div className="options">{children}</div>;

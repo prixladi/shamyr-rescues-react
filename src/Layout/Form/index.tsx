@@ -1,7 +1,7 @@
 import React from 'react';
-import { TextInput, EmailInput, PasswordInput } from './Inputs';
+import { TextInput, EmailInput, PasswordInput, Textarea, Select } from './Inputs';
 import { Formik, Form as FormikForm, FormikHelpers } from 'formik';
-import SubmitButton from './SubmitButton';
+import { SubmitButton, Button} from './Buttons';
 import './index.css';
 import Options from './Options';
 
@@ -10,7 +10,7 @@ type Props<Values> = {
   onSubmit: (values: Values, helpers: FormikHelpers<Values>) => Promise<void>;
   initialValues: Values;
   validationSchema?: any;
-  children?: any;
+  children?: React.ReactNode;
 };
 
 const Form = <Values extends {}>({ title, onSubmit, initialValues, validationSchema, children }: Props<Values>) => (
@@ -31,6 +31,9 @@ const Form = <Values extends {}>({ title, onSubmit, initialValues, validationSch
 Form.TextInput = TextInput;
 Form.EmailInput = EmailInput;
 Form.PasswordInput = PasswordInput;
+Form.Textarea = Textarea;
+Form.Select = Select;
+Form.Button = Button;
 Form.SubmitButton = SubmitButton;
 Form.Options = Options;
 

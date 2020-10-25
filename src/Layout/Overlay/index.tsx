@@ -4,7 +4,7 @@ import Content from '../Content';
 import './index.css';
 
 type OverlayProps = {
-  children: any;
+  children: React.ReactNode;
 };
 
 const Overlay = ({ children }: OverlayProps) => <div id="overlay"> {children} </div>;

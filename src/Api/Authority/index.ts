@@ -6,6 +6,7 @@ const client = axios.create({
   baseURL: _BaseUrl,
 });
 
-export default methods(client);
+export default methods(client, client);
+export { client };
 
 export * from './Routes';

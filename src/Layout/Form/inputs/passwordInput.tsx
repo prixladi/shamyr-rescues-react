@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes } from 'react';
-import InputBase from './inputBase';
+import InputBase from './InputBase';
 
 type Props = InputHTMLAttributes<HTMLInputElement> & {
   name: string;
@@ -7,6 +7,6 @@ type Props = InputHTMLAttributes<HTMLInputElement> & {
   placeholder?: string;
 };
 
-const passwordInput = ({ placeholder, ...rest }: Props) => <InputBase type="password" placeholder={placeholder || 'Password'} {...rest} />;
+const PasswordInput = ({ placeholder, ...rest }: Props) => <InputBase type="password" placeholder={placeholder || 'Password'} {...rest} />;
 
-export default passwordInput;
+export default PasswordInput;

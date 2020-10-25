@@ -4,7 +4,7 @@ import ThemeSwitch from '../ThemeSwitch';
 import Footer from '../Footer';
 
 type ContentProps = {
-  children: any;
+  children?: React.ReactNode;
   hideFooter?: boolean;
 };
 

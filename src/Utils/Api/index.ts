@@ -5,19 +5,19 @@ import { _TokenRefresh } from '../../Api/Authority/Routes';
 import { History } from 'history';
 import { _SignIn } from '../../Navigation/Routes';
 
-type Options =  AxiosRequestConfig & {
+type Options = AxiosRequestConfig & {
   expectedStatus: number[];
   history: History;
-  auth?: boolean;
+  shouldAuth?: boolean;
 };
 
 type CallAction<T> = (client: AxiosInstance, config: AxiosRequestConfig) => Promise<AxiosResponse<T>>;
 
-const methods = (client: AxiosInstance) => {
+const methods = (client: AxiosInstance, authClient: AxiosInstance) => {
   const getHeaders = (options: Options) => {
-    if (options.auth)
+    if (options.shouldAuth)
       return {
-        authorization: `Bearer ${localStorage.getItem('bearerToken')}`,
+        Authorization: `Bearer ${localStorage.getItem('bearerToken')}`,
       };
 
     return {};
@@ -34,7 +34,7 @@ const methods = (client: AxiosInstance) => {
     if (!token) return false;
 
     try {
-      const response = await client.post<TokensModel>(_TokenRefresh, { refreshToken: token });
+      const response = await authClient.post<TokensModel>(_TokenRefresh, { refreshToken: token });
       setTokens(response.data);
       return true;
     } catch (err) {
@@ -49,7 +49,7 @@ const methods = (client: AxiosInstance) => {
       const config: AxiosRequestConfig = {
         validateStatus: validateStatus(options),
         headers: getHeaders(options),
-        ...options
+        ...options,
       };
 
       let response = await action(client, config);

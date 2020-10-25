@@ -7,7 +7,7 @@ import { faPaw } from '@fortawesome/free-solid-svg-icons';
 import './index.css';
 
 type NavigationProps = {
-  children: any;
+  children: React.ReactNode;
 };
 
 const NavigationHeader = () => (

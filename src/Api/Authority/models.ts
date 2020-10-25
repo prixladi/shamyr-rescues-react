@@ -3,6 +3,10 @@ export type PasswordLoginModel = {
   password: string;
 };
 
+export type GoogleLoginModel = {
+  idToken: string;
+};
+
 export type NewUserModel = {
   username: string;
   email: string;

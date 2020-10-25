@@ -1,5 +1,5 @@
-import api, { _Emails, _PasswordReset, _TokenPassword, _Users } from '../Api/Authority';
-import { NewUserModel, PasswordLoginModel, TokensModel } from '../Api/Authority/models';
+import api, { _Emails, _PasswordReset, _TokenGoogle, _TokenPassword, _Users } from '../Api/Authority';
+import { GoogleLoginModel, NewUserModel, PasswordLoginModel, TokensModel } from '../Api/Authority/models';
 import { History } from 'history';
 import { AuthApiConfig } from '../Configs';
 import { _Profile, _SignIn } from '../Navigation/Routes';
@@ -11,14 +11,14 @@ const register = async function (model: NewUserModel, history: History) {
   if (result?.status === 409) {
     const message = result.data.Message as string;
     if (message.includes('email')) return { email: 'User with this email already exists.' };
-    
+
     return { username: 'User with this username already exists.' };
   }
 
   if (result) history.push(_SignIn);
 };
 
-const login = async (model: PasswordLoginModel, history: History) => {
+const passwordLogin = async (model: PasswordLoginModel, history: History) => {
   const result = await api.post<TokensModel>(`${_TokenPassword}`, model, { history, expectedStatus: [200, 400] });
 
   if (result && result.status !== 200)
@@ -26,6 +26,15 @@ const login = async (model: PasswordLoginModel, history: History) => {
       email: 'Invalid email or password',
       password: 'Invalid email or password',
     };
+
+  if (result) {
+    setTokens(result.data);
+    history.push(_Profile);
+  }
+};
+
+const googleLogin = async (model: GoogleLoginModel, history: History) => {
+  const result = await api.post<TokensModel>(`${_TokenGoogle}`, model, { history, expectedStatus: [200] });
 
   if (result) {
     setTokens(result.data);
@@ -57,4 +66,4 @@ const getTokens = () => {
   };
 };
 
-export { register, login, logout, sendForgottenPassword, getTokens };
+export { register, passwordLogin, googleLogin, logout, sendForgottenPassword, getTokens };

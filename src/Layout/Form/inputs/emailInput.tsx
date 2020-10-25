@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes } from 'react';
-import InputBase from './inputBase';
+import InputBase from './InputBase';
 
 type Props = InputHTMLAttributes<HTMLInputElement> & {
   name: string;
@@ -7,6 +7,6 @@ type Props = InputHTMLAttributes<HTMLInputElement> & {
   placeholder?: string;
 };
 
-const emailInput = ({ placeholder, ...rest }: Props) => <InputBase type="email" placeholder={placeholder || 'Email Address'} {...rest} />;
+const EmailInput = ({ placeholder, ...rest }: Props) => <InputBase type="email" placeholder={placeholder || 'Email Address'} {...rest} />;
 
-export default emailInput;
+export default EmailInput;

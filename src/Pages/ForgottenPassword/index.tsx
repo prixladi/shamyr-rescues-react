@@ -4,6 +4,9 @@ import { _SignIn } from '../../Navigation/Routes';
 import Form from '../../Layout/Form';
 import { authService } from '../../Services';
 import * as yup from 'yup';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import { requiredText } from '../../Utils/Validation';
 
 const { EmailInput, SubmitButton, Options } = Form;
 
@@ -16,7 +19,7 @@ const InitialValues: Values = {
 };
 
 const schema = yup.object().shape({
-  email: yup.string().email('Invalid email format.').required('Email is required.'),
+  email: yup.string().email('Invalid email format.').required(requiredText('email')),
 });
 
 const ForgottenPassword = () => {
@@ -30,7 +33,7 @@ const ForgottenPassword = () => {
     <div id="forgotten-password-page">
       <Form<Values> validationSchema={schema} initialValues={InitialValues} onSubmit={handleSubmit} title="Forgotten password">
         <EmailInput name="email" placeholder="Email Address" required />
-        <SubmitButton value="Send" />
+        <SubmitButton>Send <FontAwesomeIcon icon={faEnvelope} /></SubmitButton>
         <Options>
           Remebered? <Link to={_SignIn}>Sign in</Link>
         </Options>
