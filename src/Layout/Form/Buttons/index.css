@@ -3,13 +3,17 @@
     border: none;
     width: 100%;
     height: 2.9em;
-    background: var(--buttonTextColor);
+    background: var(--buttonBackgroundColor);
     color: #fff;
     font-size: 1.1em;
     letter-spacing: 0.08em;
     border-radius: 1em;  
     margin-top: 1.7em;
     cursor: pointer;
+}
+
+.form .btn:disabled{
+  background-color: var(--disabledButtonBackgroundColor);
 }
 
 @media screen and (max-width: 500px) {

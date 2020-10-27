@@ -3,6 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 import { _Place, _PlaceExampleNew } from '../../Navigation/Routes';
 import { placesService } from '../../Services';
 import { PlaceForm } from '../../Components';
+import Content from '../../Layout/Content';
 
 const initialValues = {
   name: '',
@@ -21,8 +22,9 @@ const NewPlace = () => {
   const history = useHistory();
 
   return (
-    <div id="new-place-page">
+    <Content id="new-place-page" hideFooter>
       <PlaceForm
+        type="wide"
         title="Create Place"
         handleSubmit={async (values) => {
           const location = await placesService.create(values, history);
@@ -46,7 +48,7 @@ const NewPlace = () => {
           </Link>
         </p>
       </PlaceForm>
-    </div>
+    </Content>
   );
 };
 

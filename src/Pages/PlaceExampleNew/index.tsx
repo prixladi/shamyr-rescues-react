@@ -2,15 +2,16 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { _PlaceExample } from '../../Navigation/Routes';
 import { PlaceForm } from '../../Components';
-
 import data from './data.json';
+import Content from '../../Layout/Content';
 
 const PlaceExampleNew = () => {
   const history = useHistory();
 
   return (
-    <div id="new-place-page">
+    <Content id="new-place-page" hideFooter>
       <PlaceForm
+        type="wide"
         title="Create Place (Example)"
         handleSubmit={async (values) => {
           history.push(_PlaceExample, values);
@@ -23,7 +24,7 @@ const PlaceExampleNew = () => {
           will be manifested in preview.
         </p>
       </PlaceForm>
-    </div>
+    </Content>
   );
 };
 

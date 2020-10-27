@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTwitter, faGithub, faFacebook, faInstagram, faPinterest } from '@fortawesome/free-brands-svg-icons';
 import { faPaw } from '@fortawesome/free-solid-svg-icons';
 import './index.css';
+import { useWindowDimensions } from '../../Hooks';
 
 type NavigationProps = {
   children: React.ReactNode;
@@ -41,13 +42,25 @@ const NavigationFooter = () => (
 
 const NavigationBody = ({ children }: NavigationProps) => <div>{children}</div>;
 
-const Navigation = (props: NavigationProps) => (
-  <Menu pageWrapId="layout" outerContainerId="content">
-    <NavigationHeader />
-    <NavigationBody {...props} />
-    <NavigationFooter />
-  </Menu>
-);
+const Navigation = (props: NavigationProps) => {
+  const dimensions = useWindowDimensions();
+
+  return (
+    <Menu
+      isOpen={dimensions.width > 1200}
+      pageWrapId="layout"
+      outerContainerId="content"
+      noOverlay
+      disableCloseOnEsc
+      disableAutoFocus
+      disableOverlayClick
+    >
+      <NavigationHeader />
+      <NavigationBody {...props} />
+      <NavigationFooter />
+    </Menu>
+  );
+};
 
 Navigation.Item = Item;
 

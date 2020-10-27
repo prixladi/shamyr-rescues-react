@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { TextInput, EmailInput, PasswordInput, Textarea, Select } from './Inputs';
 import { Formik, Form as FormikForm, FormikHelpers } from 'formik';
 import { SubmitButton, Button } from './Buttons';
@@ -10,23 +10,34 @@ type Props<Values> = {
   onSubmit: (values: Values, helpers: FormikHelpers<Values>) => Promise<void>;
   initialValues: Values;
   validationSchema?: any;
+  type?: 'narrow' | 'normal' | 'wide';
   children?: React.ReactNode;
 };
 
-const Form = <Values extends {}>({ title, onSubmit, initialValues, validationSchema, children }: Props<Values>) => (
-  <div className="form">
-    {title && <h1>{title}</h1>}
-    <Formik<Values>
-      validateOnChange={false}
-      validateOnBlur={false}
-      validationSchema={validationSchema}
-      initialValues={initialValues}
-      onSubmit={onSubmit}
-    >
-      <FormikForm>{children}</FormikForm>
-    </Formik>
-  </div>
-);
+const Form = <Values extends {}>({ title, onSubmit, initialValues, validationSchema, type, children }: Props<Values>) => {
+  const onSubmitWrapper = useCallback(
+    async (values: Values, helpers: FormikHelpers<Values>) => {
+      helpers.setSubmitting(true);
+      await onSubmit(values, helpers);
+    },
+    [onSubmit]
+  );
+
+  return (
+    <div className={!type ? 'form narrow-form' : `form ${type}-form`}>
+      {title && <h1>{title}</h1>}
+      <Formik<Values>
+        validateOnChange={false}
+        validateOnBlur={true}
+        validationSchema={validationSchema}
+        initialValues={initialValues}
+        onSubmit={onSubmitWrapper}
+      >
+        <FormikForm>{children}</FormikForm>
+      </Formik>
+    </div>
+  );
+};
 
 Form.TextInput = TextInput;
 Form.EmailInput = EmailInput;

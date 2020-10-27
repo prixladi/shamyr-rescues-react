@@ -1,3 +1,4 @@
+import { useFormikContext } from 'formik';
 import React from 'react';
 import './index.css';
 
@@ -6,8 +7,10 @@ export type Props = {
 };
 
 const SubmitButton = ({ children }: Props) => {
+  const { isSubmitting } = useFormikContext();
+  
   return (
-    <button className="btn" type="submit">
+    <button disabled={isSubmitting} className="btn" type="submit">
       {children}
     </button>
   );

@@ -1,3 +1,4 @@
+import { useFormikContext } from 'formik';
 import React, { MouseEventHandler } from 'react';
 import './index.css';
 
@@ -7,8 +8,10 @@ export type Props = {
 };
 
 const SubmitButton = ({ onClick, children }: Props) => {
+  const { isSubmitting } = useFormikContext();
+  
   return (
-    <button className="btn" onClick={onClick}>
+    <button disabled={isSubmitting} className="btn" onClick={onClick}>
       {children}
     </button>
   );

@@ -1,3 +1,4 @@
+import AccountVerified from './AccountVerified';
 import AccountVerify from './AccountVerify';
 import AccountVerifySent from './AccountVerifySent';
 import EditPlace from './EditPlace';
@@ -26,6 +27,7 @@ export {
   EditPlace,
   PlaceExample,
   PlaceExampleNew,
+  AccountVerified,
   AccountVerifySent,
   AccountVerify,
 };

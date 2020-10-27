@@ -28,6 +28,7 @@ type Props = {
   handleSubmit: (values: Values, helpers: FormikHelpers<Values>) => Promise<void>;
   submitText: string;
   initialValues: Values;
+  type?: 'narrow' | 'normal' | 'wide';
   children?: React.ReactNode;
 };
 
@@ -44,12 +45,12 @@ const schema = yup.object<Values>().shape({
   quote: yup.string().max(2000, tooLongText('Quote', 2000)),
 });
 
-const PlaceForm = ({ title, handleSubmit, submitText, initialValues, children }: Props) => {
+const PlaceForm = ({ title, handleSubmit, submitText, initialValues, children, type }: Props) => {
   const { getAsOptions } = useCountries();
 
   return (
     <div id="login-page">
-      <Form<Values> validationSchema={schema} initialValues={initialValues} title={title} onSubmit={handleSubmit}>
+      <Form<Values> validationSchema={schema} initialValues={initialValues} type={type} title={title} onSubmit={handleSubmit}>
         <TextInput name="name" placeholder="Name" required />
         <Textarea name="shortDescription" placeholder="Short Description (Will Be Displayed In List)" required />
         <Select name="countryCode" emptyOption="Select country" options={getAsOptions()} required />

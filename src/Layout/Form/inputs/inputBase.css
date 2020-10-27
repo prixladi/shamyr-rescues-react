@@ -7,11 +7,9 @@
     font-size: 18px;
     text-align: center;
     border-radius: 1em;
-}
-
-.form .textarea {
-    padding-top: 0.8em;
-    min-height: 5em;
+    -webkit-transition: all var(--transition);
+    -ms-transition: all var(--transition);
+    transition: all var(--transition);
 }
 
 .form .error-input {
@@ -20,23 +18,6 @@
 
 .form .field-wrapper {
     margin-bottom: 1.7em;
-}
-
-.form select.select {
-    text-align: center;
-    text-align-last: center;
-    appearance: none;
-    -moz-appearance: none;
-    -webkit-appearance: none;
-}
-
-.form select.placeholder {
-    color: var(--placeholderColor)
-}
-
-.form select.select optgroup {
-    background: var(--selectBackgroundColor);
-    color: var(--textColor);
 }
 
 @media screen and (max-width: 500px) {

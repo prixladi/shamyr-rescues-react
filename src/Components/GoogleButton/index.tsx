@@ -1,15 +1,19 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import Form from '../../../Layout/Form';
+import Form from '../../Layout/Form';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGoogle } from '@fortawesome/free-brands-svg-icons';
 import GoogleLogin, { GoogleLoginResponse } from 'react-google-login';
-import { GoogleConfig } from '../../../Configs';
-import { authService } from '../../../Services';
+import { GoogleConfig } from '../../Configs';
+import { authService } from '../../Services';
 
 const { Button } = Form;
 
-const GoogleSignIn = () => {
+type Props = {
+  buttonText: string;
+};
+
+const GoogleButton = ({ buttonText }: Props) => {
   const history = useHistory();
 
   return (
@@ -17,7 +21,7 @@ const GoogleSignIn = () => {
       clientId={GoogleConfig.clientId}
       render={(renderProps) => (
         <Button onClick={renderProps.onClick}>
-          Login with Google <FontAwesomeIcon icon={faGoogle} />
+          {buttonText} <FontAwesomeIcon icon={faGoogle} />
         </Button>
       )}
       onSuccess={async (response) => {
@@ -31,4 +35,4 @@ const GoogleSignIn = () => {
   );
 };
 
-export default GoogleSignIn;
+export default GoogleButton;

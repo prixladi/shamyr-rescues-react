@@ -5,16 +5,19 @@ import { _PlaceExampleNew } from '../../Navigation/Routes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { PlaceDetailModel } from '../../Api';
+import Content from '../../Layout/Content';
 
 const PlaceExample = () => {
   const location = useLocation<PlaceDetailModel>();
 
   return (
-    <PlaceDetail place={location.state}>
-      <Link to={_PlaceExampleNew}>
-        <FontAwesomeIcon icon={faArrowLeft} /> Back to example
-      </Link>
-    </PlaceDetail>
+    <Content id="place-example-page">
+      <PlaceDetail place={location.state}>
+        <Link to={_PlaceExampleNew}>
+          <FontAwesomeIcon icon={faArrowLeft} /> Back to example
+        </Link>
+      </PlaceDetail>
+    </Content>
   );
 };
 

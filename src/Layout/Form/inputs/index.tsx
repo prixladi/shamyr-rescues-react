@@ -1,6 +1,6 @@
-import EmailInput from './EmailInput';
-import PasswordInput from './PasswordInput';
-import TextInput from './TextInput';
+import EmailInput from './BasicInputs/EmailInput';
+import PasswordInput from './BasicInputs/PasswordInput';
+import TextInput from './BasicInputs/TextInput';
 import Textarea from './Textarea';
 import Select from './Select';
 

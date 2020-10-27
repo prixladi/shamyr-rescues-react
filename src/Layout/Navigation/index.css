@@ -8,6 +8,9 @@
 
 .bm-burger-bars {
     background: var(--textColor);
+    -webkit-transition: all var(--transition);
+    -ms-transition: all var(--transition);
+    transition: all var(--transition);
 }
 
 .bm-cross-button {

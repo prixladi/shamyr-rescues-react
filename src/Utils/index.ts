@@ -4,7 +4,7 @@ import { TokensModel } from '../Api/Authority/models';
 type UserProfile = {
   id: string;
   email: string;
-  username: string;
+  username?: string;
   givenName?: string;
   familyName?: string;
 };

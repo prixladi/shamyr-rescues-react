@@ -9,6 +9,9 @@ const _SignIn = '/signIn';
 const _Register = '/register';
 const _ForgottenPassword = '/forgottenPassword';
 const _ForgottenPasswordSent = '/forgottenPassword/sent';
+const _AccountVerified = '/accountVerified';
+const _AccountVerify = '/accountVerify';
+const _AccountVerifySent = '/accountVerify/sent';
 const _Profile = '/profile';
 
 export {
@@ -23,5 +26,8 @@ export {
   _Register,
   _ForgottenPassword,
   _ForgottenPasswordSent,
+  _AccountVerified,
+  _AccountVerify,
+  _AccountVerifySent,
   _Profile,
 };

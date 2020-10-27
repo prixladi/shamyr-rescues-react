@@ -1,5 +1,5 @@
 import React, { InputHTMLAttributes } from 'react';
-import InputBase from './InputBase';
+import InputBase from '../InputBase';
 
 type Props = InputHTMLAttributes<HTMLInputElement> & {
   name: string;

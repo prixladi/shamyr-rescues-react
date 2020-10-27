@@ -2,4 +2,7 @@
     color: var(--labelColor);
     font-size: 1em;
     margin-top: 1.5em;
+    -webkit-transition: all var(--transition);
+    -ms-transition: all var(--transition);
+    transition: all var(--transition);
 }

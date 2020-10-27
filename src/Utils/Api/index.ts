@@ -4,6 +4,9 @@ import { TokensModel } from '../../Api/Authority/models';
 import { _TokenRefresh } from '../../Api/Authority/Routes';
 import { History } from 'history';
 import { _SignIn } from '../../Navigation/Routes';
+import { StatusCodes } from 'http-status-codes';
+
+const { OK, MULTIPLE_CHOICES, UNAUTHORIZED } = StatusCodes;
 
 type Options = AxiosRequestConfig & {
   expectedStatus: number[];
@@ -24,8 +27,8 @@ const methods = (client: AxiosInstance, authClient: AxiosInstance) => {
   };
 
   const validateStatus = (options: Options) => (status: number) => {
-    if (status === 401) return true;
-    else if (options.expectedStatus.length === 0) return status >= 200 && status < 300;
+    if (status === UNAUTHORIZED) return true;
+    else if (options.expectedStatus.length === 0) return status >= OK && status < MULTIPLE_CHOICES;
     return options.expectedStatus.includes(status);
   };
 
@@ -54,9 +57,13 @@ const methods = (client: AxiosInstance, authClient: AxiosInstance) => {
 
       let response = await action(client, config);
 
-      if (response.status === 401) {
-        if (tryRefreshToken()) return await action(client, config);
-        else options.history.push(_SignIn);
+      if (response.status === UNAUTHORIZED) {
+        if (tryRefreshToken()) {
+          return await action(client, config);
+        } else {
+          options.history.push(_SignIn);
+          return null;
+        }
       }
 
       return response;

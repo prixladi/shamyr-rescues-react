@@ -7,6 +7,7 @@ import * as yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { requiredText } from '../../Utils/Validation';
+import Content from '../../Layout/Content';
 
 const { EmailInput, SubmitButton, Options } = Form;
 
@@ -32,7 +33,7 @@ const ForgottenPassword = () => {
   };
 
   return (
-    <div id="forgotten-password-page">
+    <Content id="forgotten-password-page" hideFooter>
       <Form<Values> validationSchema={schema} initialValues={InitialValues} onSubmit={handleSubmit} title="Forgotten password">
         <EmailInput name="email" placeholder="Email Address" required />
         <SubmitButton>
@@ -42,7 +43,7 @@ const ForgottenPassword = () => {
           Remebered? <Link to={_SignIn}>Sign in</Link>
         </Options>
       </Form>
-    </div>
+    </Content>
   );
 };
 

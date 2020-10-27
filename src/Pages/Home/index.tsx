@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Content from '../../Layout/Content';
 import { _Places } from '../../Navigation/Routes';
 
 const Home = () => (
-  <div id="home-page">
+  <Content id="home-page">
     <h1 className="label">Shamyr Rescues</h1>
     <p>
       This website focuses on spreading awareness about animal rescues in your state. This place is for animal lovers around the world to
@@ -27,7 +28,7 @@ const Home = () => (
     </blockquote>
 
     <p>But this list is not complete, many animal rescues also provide safe shelter for rescued farm animals.</p>
-  </div>
+  </Content>
 );
 
 export default Home;

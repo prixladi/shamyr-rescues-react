@@ -4,6 +4,7 @@ import { _Place, _PlaceExampleNew } from '../../Navigation/Routes';
 import { placesService } from '../../Services';
 import { PlaceForm } from '../../Components';
 import { usePlace } from '../../Hooks';
+import Content from '../../Layout/Content';
 
 type Match = {
   placeId: string;
@@ -19,8 +20,9 @@ const EditPlace = () => {
   const { id, userId, removed, createdAt, updatedAt, ...rest } = place;
 
   return (
-    <div id="new-place-page">
+    <Content id="new-place-page" hideFooter>
       <PlaceForm
+        type="wide"
         title="Edit Place"
         handleSubmit={async (values) => {
           if (await placesService.update(id, values, history)) {
@@ -37,7 +39,7 @@ const EditPlace = () => {
           </Link>
         </p>
       </PlaceForm>
-    </div>
+    </Content>
   );
 };
 

@@ -1,14 +1,22 @@
-import api, { _Emails, _PasswordReset, _TokenGoogle, _TokenPassword, _Users } from '../Api/Authority';
+import api, { _Emails, _PasswordReset, _TokenGoogle, _TokenPassword, _Users, _Verification, _Verified } from '../Api/Authority';
 import { GoogleLoginModel, NewUserModel, PasswordLoginModel, TokensModel } from '../Api/Authority/models';
 import { History } from 'history';
 import { AuthApiConfig } from '../Configs';
-import { _Profile, _SignIn } from '../Navigation/Routes';
+import { _AccountVerify, _Profile, _SignIn } from '../Navigation/Routes';
 import { setTokens, unsetTokens } from '../Utils';
+import { StatusCodes } from 'http-status-codes';
+
+const { OK, CREATED, NO_CONTENT, BAD_REQUEST, NOT_FOUND, CONFLICT } = StatusCodes;
+const EMAIL_NOT_VERIFIED = 430;
 
 const register = async function (model: NewUserModel, history: History) {
-  const result = await api.post(`${_Users}`, { ...model, clientId: AuthApiConfig.clientId }, { history, expectedStatus: [201, 409] });
+  const result = await api.post(
+    `${_Users}`,
+    { ...model, clientId: AuthApiConfig.clientId },
+    { history, expectedStatus: [CREATED, CONFLICT] }
+  );
 
-  if (result?.status === 409) {
+  if (result?.status === CONFLICT) {
     const message = result.data.Message as string;
     if (message.includes('email')) return { email: 'User with this email already exists.' };
 
@@ -19,22 +27,26 @@ const register = async function (model: NewUserModel, history: History) {
 };
 
 const passwordLogin = async (model: PasswordLoginModel, history: History) => {
-  const result = await api.post<TokensModel>(`${_TokenPassword}`, model, { history, expectedStatus: [200, 400] });
+  const result = await api.post<TokensModel>(`${_TokenPassword}`, model, {
+    history,
+    expectedStatus: [OK, BAD_REQUEST, EMAIL_NOT_VERIFIED],
+  });
 
-  if (result && result.status !== 200)
+  if (result && result.status === EMAIL_NOT_VERIFIED) {
+    history.push(_AccountVerify, result.data);
+  } else if (result && result.status !== OK) {
     return {
-      email: 'Invalid email or password',
-      password: 'Invalid email or password',
+      email: 'Invalid email or password.',
+      password: 'Invalid email or password.',
     };
-
-  if (result) {
+  } else if (result) {
     setTokens(result.data);
     history.push(_Profile);
   }
 };
 
 const googleLogin = async (model: GoogleLoginModel, history: History) => {
-  const result = await api.post<TokensModel>(`${_TokenGoogle}`, model, { history, expectedStatus: [200] });
+  const result = await api.post<TokensModel>(`${_TokenGoogle}`, model, { history, expectedStatus: [OK] });
 
   if (result) {
     setTokens(result.data);
@@ -53,10 +65,38 @@ const sendForgottenPassword = async (email: string, history: History) => {
   const result = await api.patch(
     `${_Emails}/${email}/${_PasswordReset}`,
     { clientId: AuthApiConfig.clientId },
-    { history, expectedStatus: [200, 204] }
+    { history, expectedStatus: [OK, NO_CONTENT] }
   );
 
   return result != null;
+};
+
+const sendAccountVerification = async (email: string, history: History) => {
+  const result = await api.patch(
+    `${_Emails}/${email}/${_Verification}`,
+    { clientId: AuthApiConfig.clientId },
+    { history, expectedStatus: [OK, NO_CONTENT, NOT_FOUND, CONFLICT] }
+  );
+
+  if (result?.status === CONFLICT)
+    return {
+      email: 'Account with this email has already been verified.',
+    };
+
+  if (result?.status === NOT_FOUND)
+    return {
+      email: "Account with this email does't exist.",
+    };
+};
+
+const verifyAccount = async (email: string, token: string, history: History) => {
+  const result = await api.put(
+    `${_Emails}/${email}/${_Verified}`,
+    { token },
+    { history, expectedStatus: [OK, NO_CONTENT, BAD_REQUEST, NOT_FOUND, CONFLICT] }
+  );
+
+  return result?.status;
 };
 
 const getTokens = () => {
@@ -66,4 +106,4 @@ const getTokens = () => {
   };
 };
 
-export { register, passwordLogin, googleLogin, logout, sendForgottenPassword, getTokens };
+export { register, passwordLogin, googleLogin, logout, sendForgottenPassword, sendAccountVerification, getTokens, verifyAccount };

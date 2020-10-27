@@ -8,6 +8,8 @@ import * as yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { requiredText, tooShortText } from '../../Utils/Validation';
+import Content from '../../Layout/Content';
+import { GoogleButton } from '../../Components';
 
 const { PasswordInput, EmailInput, TextInput, SubmitButton, Options } = Form;
 
@@ -44,7 +46,7 @@ const Register = () => {
   };
 
   return (
-    <div id="register-page">
+    <Content id="register-page" hideFooter>
       <Form<Values> validationSchema={schema} initialValues={InitialValues} onSubmit={handleSubmit} title="Register">
         <TextInput name="username" placeholder="Username" required />
         <EmailInput name="email" required />
@@ -54,11 +56,12 @@ const Register = () => {
         <SubmitButton>
           Register <FontAwesomeIcon icon={faUser} />
         </SubmitButton>
+        <GoogleButton buttonText="Login with Google" />
         <Options>
           Already Registered? <Link to={_SignIn}>Sign In</Link>
         </Options>
       </Form>
-    </div>
+    </Content>
   );
 };
 

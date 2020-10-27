@@ -6,10 +6,11 @@ import { _ForgottenPassword, _Register } from '../../Navigation/Routes';
 import { authService } from '../../Services';
 import * as yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
-import GoogleLogin from './GoogleLogin';
+import { faSignInAlt } from '@fortawesome/free-solid-svg-icons';
 import './index.css';
 import { requiredText, tooShortText } from '../../Utils/Validation';
+import Content from '../../Layout/Content';
+import { GoogleButton } from '../../Components';
 
 const { PasswordInput, EmailInput, SubmitButton, Options } = Form;
 
@@ -41,7 +42,7 @@ const Login = () => {
   );
 
   return (
-    <div id="login-page">
+    <Content id="login-page" hideFooter>
       <Form<Values> validationSchema={schema} initialValues={InitialValues} title="Sign in" onSubmit={handleSubmit}>
         <EmailInput required name="email" />
         <PasswordInput required name="password" />
@@ -55,14 +56,14 @@ const Login = () => {
           </Link>
         </Options>
         <SubmitButton>
-          Login with Email <FontAwesomeIcon icon={faEnvelope} />
+          Login with Email <FontAwesomeIcon icon={faSignInAlt} />
         </SubmitButton>
-        <GoogleLogin />
+        <GoogleButton buttonText="Login with Google" />
         <Options>
           Not Registered? <Link to={_Register}>Create an Account</Link>
         </Options>
       </Form>
-    </div>
+    </Content>
   );
 };
 
