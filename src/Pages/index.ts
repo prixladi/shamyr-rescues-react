@@ -1,5 +1,8 @@
+import AccountVerify from './AccountVerify';
+import AccountVerifySent from './AccountVerifySent';
 import EditPlace from './EditPlace';
 import ForgottenPassword from './ForgottenPassword';
+import ForgottenPasswordSent from './ForgottenPasswordSent';
 import Home from './Home';
 import Login from './Login';
 import NewPlace from './NewPlace';
@@ -10,4 +13,19 @@ import Places from './Places';
 import Profile from './Profile';
 import Register from './Register';
 
-export { ForgottenPassword, Home, Places, Login, NewPlace, Place, Profile, Register, EditPlace, PlaceExample, PlaceExampleNew };
+export {
+  ForgottenPassword,
+  ForgottenPasswordSent,
+  Home,
+  Places,
+  Login,
+  NewPlace,
+  Place,
+  Profile,
+  Register,
+  EditPlace,
+  PlaceExample,
+  PlaceExampleNew,
+  AccountVerifySent,
+  AccountVerify,
+};

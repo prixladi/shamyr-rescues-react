@@ -13,6 +13,7 @@ import {
   _PlaceEdit,
   _PlaceExampleNew,
   _PlaceExample,
+  _ForgottenPasswordSent,
 } from './Navigation/Routes';
 import {
   Home,
@@ -21,6 +22,7 @@ import {
   Login,
   Register,
   ForgottenPassword,
+  ForgottenPasswordSent,
   Profile,
   NewPlace,
   EditPlace,
@@ -98,6 +100,12 @@ const App = () => (
         <Route path={_ForgottenPassword} exact>
           <Content hideFooter>
             <ForgottenPassword />
+          </Content>
+        </Route>
+
+        <Route path={_ForgottenPasswordSent} exact>
+          <Content hideFooter>
+            <ForgottenPasswordSent />
           </Content>
         </Route>
 

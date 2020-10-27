@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import { _SignIn } from '../../Navigation/Routes';
+import { _ForgottenPasswordSent, _SignIn } from '../../Navigation/Routes';
 import Form from '../../Layout/Form';
 import { authService } from '../../Services';
 import * as yup from 'yup';
@@ -26,7 +26,9 @@ const ForgottenPassword = () => {
   const history = useHistory();
 
   const handleSubmit = async (values: Values) => {
-    await authService.sendForgottenPassword(values.email, history);
+    if (await authService.sendForgottenPassword(values.email, history)) {
+      history.push(_ForgottenPasswordSent);
+    }
   };
 
   return (

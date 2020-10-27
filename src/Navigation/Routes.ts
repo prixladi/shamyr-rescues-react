@@ -8,7 +8,20 @@ const _PlaceExampleNew = '/places/example/new';
 const _SignIn = '/signIn';
 const _Register = '/register';
 const _ForgottenPassword = '/forgottenPassword';
-
+const _ForgottenPasswordSent = '/forgottenPassword/sent';
 const _Profile = '/profile';
 
-export { _Home, _Places, _PlaceNew, _PlaceEdit, _Place, _PlaceExample, _PlaceExampleNew, _SignIn, _Register, _ForgottenPassword, _Profile };
+export {
+  _Home,
+  _Places,
+  _PlaceNew,
+  _PlaceEdit,
+  _Place,
+  _PlaceExample,
+  _PlaceExampleNew,
+  _SignIn,
+  _Register,
+  _ForgottenPassword,
+  _ForgottenPasswordSent,
+  _Profile,
+};
