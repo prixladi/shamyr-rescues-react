@@ -15,6 +15,7 @@ COPY ./configs/nginx.conf /etc/nginx/conf.d/default.conf
 COPY ./configs/config.js /configs/config.js
 COPY --from=build /app/build /usr/share/nginx/html
 COPY --from=build /app/run.sh /run.sh
+RUN chmod +x /run.sh
 
 EXPOSE 80
 ENTRYPOINT ["/run.sh"]
