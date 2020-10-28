@@ -1,0 +1,27 @@
+.form .user-input {
+    width: 100%;
+    height: 3.1em;
+    border: none;
+    background: var(--inputBackgroundText);
+    color: var(--textColor);
+    font-size: 18px;
+    text-align: center;
+    border-radius: 1em;
+    -webkit-transition: all var(--transition);
+    -ms-transition: all var(--transition);
+    transition: all var(--transition);
+}
+
+.form .error-input {
+    border: solid var(--defaultErrorColor) 0.15em;
+}
+
+.form .field-wrapper {
+    margin-bottom: 1.7em;
+}
+
+@media screen and (max-width: 500px) {
+    .form .user-input {
+        width: 100%
+    }
+}

@@ -1,0 +1,16 @@
+.form select.select {
+    text-align: center;
+    text-align-last: center;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+
+.form select.placeholder {
+    color: var(--placeholderColor)
+}
+
+.form select.select optgroup {
+    background: var(--selectBackgroundColor);
+    color: var(--textColor);
+}
