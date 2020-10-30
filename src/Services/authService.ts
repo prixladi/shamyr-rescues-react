@@ -1,5 +1,5 @@
 import api, { _Emails, _PasswordReset, _TokenGoogle, _TokenPassword, _Users, _Verification, _Verified } from '../Api/Authority';
-import { GoogleLoginModel, NewUserModel, PasswordLoginModel, TokensModel } from '../Api/Authority/models';
+import { EmailNotVerifiedModel, GoogleLoginModel, NewUserModel, PasswordLoginModel, TokensModel } from '../Api/Authority/models';
 import { History } from 'history';
 import { AuthApiConfig } from '../Configs';
 import { _AccountVerify, _Profile, _SignIn } from '../Navigation/Routes';
@@ -23,24 +23,26 @@ const register = async function (model: NewUserModel, history: History) {
     return { username: 'User with this username already exists.' };
   }
 
-  if (result) history.push(_SignIn);
+  if (result) {
+    history.push(_AccountVerify, { email: model.email });
+  }
 };
 
 const passwordLogin = async (model: PasswordLoginModel, history: History) => {
-  const result = await api.post<TokensModel>(`${_TokenPassword}`, model, {
+  const result = await api.post<TokensModel | EmailNotVerifiedModel>(`${_TokenPassword}`, model, {
     history,
     expectedStatus: [OK, BAD_REQUEST, EMAIL_NOT_VERIFIED],
   });
 
   if (result && result.status === EMAIL_NOT_VERIFIED) {
-    history.push(_AccountVerify, result.data);
+    history.push(_AccountVerify, { email: (result.data as EmailNotVerifiedModel).User.Email });
   } else if (result && result.status !== OK) {
     return {
       email: 'Invalid email or password.',
       password: 'Invalid email or password.',
     };
   } else if (result) {
-    setTokens(result.data);
+    setTokens(result.data as TokensModel);
     history.push(_Profile);
   }
 };

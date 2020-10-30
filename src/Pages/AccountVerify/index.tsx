@@ -16,8 +16,8 @@ type Values = {
   email: string;
 };
 
-type State = {
-  User: { Email: string };
+export type RouteState = {
+  email: string;
 };
 
 const schema = yup.object().shape({
@@ -26,7 +26,7 @@ const schema = yup.object().shape({
 
 const ForgottenPassword = () => {
   const history = useHistory();
-  const { state } = useLocation<State>();
+  const { state } = useLocation<RouteState>();
 
   const handleSubmit = async (values: Values, { setErrors }: FormikHelpers<Values>) => {
     const result = await authService.sendAccountVerification(values.email, history);
@@ -37,13 +37,13 @@ const ForgottenPassword = () => {
     }
   };
 
-  if (!state || !state.User) {
+  if (!state || !state.email) {
     return <Redirect to={_SignIn} />;
   }
 
   return (
     <Content id="account-verify-page" hideFooter>
-      <Form<Values> validationSchema={schema} initialValues={{ email: state.User.Email }} onSubmit={handleSubmit} title="Account verify">
+      <Form<Values> validationSchema={schema} initialValues={{ email: state.email }} onSubmit={handleSubmit} title="Account verify">
         <EmailInput name="email" placeholder="Email Address" required />
         <Options>You need to verify your account first, check your email or press button below to resend verification email.</Options>
         <SubmitButton>

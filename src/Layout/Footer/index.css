@@ -14,4 +14,7 @@
     top: 0;
     background-color: var(--textColor);
     position: absolute;
+    -webkit-transition: all var(--transition);
+    -ms-transition: all var(--transition);
+    transition: all var(--transition);
 }

@@ -19,3 +19,9 @@ export type TokensModel = {
   bearerToken: string;
   refreshToken: string;
 };
+
+export type EmailNotVerifiedModel = {
+  User : {
+    Email: string
+  }
+};

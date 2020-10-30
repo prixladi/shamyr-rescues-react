@@ -13,7 +13,7 @@ const Home = () => (
     </p>
 
     <p>
-      <img src="https://hoghavenblog.org/wp-content/uploads/2019/04/Hooligan_Babies-1-1024x683.jpg" alt="homeImage" />
+      <img src="/assets/homePageImage.jpg" alt="homeImage" />
     </p>
 
     <p>

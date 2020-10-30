@@ -5,6 +5,7 @@ import { _TokenRefresh } from '../../Api/Authority/Routes';
 import { History } from 'history';
 import { _SignIn } from '../../Navigation/Routes';
 import { StatusCodes } from 'http-status-codes';
+import { notificationService } from '../../Services';
 
 const { OK, MULTIPLE_CHOICES, UNAUTHORIZED } = StatusCodes;
 
@@ -42,6 +43,7 @@ const methods = (client: AxiosInstance, authClient: AxiosInstance) => {
       return true;
     } catch (err) {
       console.error(err);
+      notificationService.serverError();
       unsetTokens();
       return false;
     }
@@ -69,6 +71,7 @@ const methods = (client: AxiosInstance, authClient: AxiosInstance) => {
       return response;
     } catch (err) {
       console.error(err);
+      notificationService.serverError();
       return null;
     }
   };
