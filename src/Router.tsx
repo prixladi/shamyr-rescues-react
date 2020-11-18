@@ -14,6 +14,7 @@ import {
   _PlaceExampleNew,
   _PlaceExample,
   _ForgottenPasswordSent,
+  _PasswordReset,
   _AccountVerify,
   _AccountVerifySent,
   _AccountVerified,
@@ -27,6 +28,7 @@ import {
   Register,
   ForgottenPassword,
   ForgottenPasswordSent,
+  PasswordReset,
   Profile,
   NewPlace,
   EditPlace,
@@ -77,6 +79,10 @@ const Router = () => (
 
     <Route path={_Register} exact>
       <Register />
+    </Route>
+
+    <Route path={_PasswordReset} exact>
+      <PasswordReset />
     </Route>
 
     <Route path={_ForgottenPassword} exact>

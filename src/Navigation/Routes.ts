@@ -7,6 +7,7 @@ const _PlaceExample = '/places/example';
 const _PlaceExampleNew = '/places/example/new';
 const _SignIn = '/signIn';
 const _Register = '/register';
+const _PasswordReset = '/passwordReset';
 const _ForgottenPassword = '/forgottenPassword';
 const _ForgottenPasswordSent = '/forgottenPassword/sent';
 const _AccountVerified = '/accountVerified';
@@ -24,6 +25,7 @@ export {
   _PlaceExampleNew,
   _SignIn,
   _Register,
+  _PasswordReset,
   _ForgottenPassword,
   _ForgottenPasswordSent,
   _AccountVerified,

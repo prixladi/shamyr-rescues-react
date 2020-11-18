@@ -43,13 +43,13 @@ const Login = () => {
 
   return (
     <Content id="login-page" hideFooter>
-      <Form<Values> validationSchema={schema} initialValues={InitialValues} title="Sign in" onSubmit={handleSubmit}>
+      <Form<Values> validationSchema={schema} initialValues={InitialValues} title="Sign In" onSubmit={handleSubmit}>
         <EmailInput required name="email" />
         <PasswordInput required name="password" />
         <Options>
           <label className="remember-me">
             <input type="checkbox" />
-            Remember me
+            Remember user
           </label>
           <Link className="right" to={_ForgottenPassword}>
             Forgot your password?

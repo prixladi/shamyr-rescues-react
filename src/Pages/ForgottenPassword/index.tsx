@@ -34,7 +34,7 @@ const ForgottenPassword = () => {
 
   return (
     <Content id="forgotten-password-page" hideFooter>
-      <Form<Values> validationSchema={schema} initialValues={InitialValues} onSubmit={handleSubmit} title="Forgotten password">
+      <Form<Values> validationSchema={schema} initialValues={InitialValues} onSubmit={handleSubmit} title="Forgotten Password">
         <EmailInput name="email" placeholder="Email Address" required />
         <SubmitButton>
           Send <FontAwesomeIcon icon={faEnvelope} />

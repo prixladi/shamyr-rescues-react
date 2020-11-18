@@ -1,22 +1,31 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form } from '../../Layout';
-import { authService } from '../../Services';
-import { getUserProfile } from '../../Utils';
+import { authService, userService } from '../../Services';
 import UserPlaces from './UserPlaces';
 import './index.css';
 import Content from '../../Layout/Content';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { authorityManager } from '../../clients';
 
 const { SubmitButton } = Form;
 
 const Profile = () => {
-  const [user] = useState(getUserProfile());
+  const [user] = useState(authorityManager.getUserProfile());
   const history = useHistory();
 
+  const checkUser = useCallback(async () => {
+    if (user == null || !(await userService.checkUser(history))) {
+      authService.logout(history);
+    }
+  }, [history, user]);
+
+  useEffect(() => {
+    checkUser();
+  }, [checkUser]);
+
   if (!user) {
-    authService.logout(history);
     return null;
   }
 

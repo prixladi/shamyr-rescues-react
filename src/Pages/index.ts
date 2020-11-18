@@ -7,6 +7,7 @@ import ForgottenPasswordSent from './ForgottenPasswordSent';
 import Home from './Home';
 import Login from './Login';
 import NewPlace from './NewPlace';
+import PasswordReset from './PasswordReset';
 import Place from './Place';
 import PlaceExample from './PlaceExample';
 import PlaceExampleNew from './PlaceExampleNew';
@@ -27,6 +28,7 @@ export {
   EditPlace,
   PlaceExample,
   PlaceExampleNew,
+  PasswordReset,
   AccountVerified,
   AccountVerifySent,
   AccountVerify,

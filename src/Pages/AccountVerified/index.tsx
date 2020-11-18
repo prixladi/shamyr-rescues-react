@@ -31,7 +31,6 @@ const AccountVerified = () => {
   const { search } = useLocation();
   const [state, setState] = useState(false as State);
   const history = useHistory();
-
   const query = useMemo(() => queryString.parse(search), [search]);
 
   const tryVerify = useCallback(async () => {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { authorityManager } from '../clients';
 import { Overlay } from '../Layout';
-import { isUserLoggedIn } from '../Utils';
 import { _Home, _Places, _SignIn, _Profile } from './Routes';
 
 const { Navigation } = Overlay;
@@ -11,7 +11,7 @@ const Nav = () => {
   const location = useLocation();
 
   useEffect(() => {
-    setLoggedIn(isUserLoggedIn());
+    setLoggedIn(authorityManager.isUserLoggedIn());
   }, [location]);
 
   return (

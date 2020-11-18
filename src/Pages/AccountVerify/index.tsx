@@ -43,7 +43,7 @@ const ForgottenPassword = () => {
 
   return (
     <Content id="account-verify-page" hideFooter>
-      <Form<Values> validationSchema={schema} initialValues={{ email: state.email }} onSubmit={handleSubmit} title="Account verify">
+      <Form<Values> validationSchema={schema} initialValues={{ email: state.email }} onSubmit={handleSubmit} title="Account Verify">
         <EmailInput name="email" placeholder="Email Address" required />
         <Options>You need to verify your account first, check your email or press button below to resend verification email.</Options>
         <SubmitButton>

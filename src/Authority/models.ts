@@ -25,3 +25,7 @@ export type EmailNotVerifiedModel = {
     Email: string
   }
 };
+
+export type ErrorModel = {
+  Message: string;
+};
