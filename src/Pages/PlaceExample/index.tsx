@@ -7,7 +7,7 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { PlaceDetailModel } from '../../Api';
 import Content from '../../Layout/Content';
 
-const PlaceExample = () => {
+const PlaceExample: React.FC = () => {
   const location = useLocation<PlaceDetailModel>();
 
   return (

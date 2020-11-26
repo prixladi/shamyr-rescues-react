@@ -29,6 +29,6 @@ const getUserProfile = (): UserProfile | null => {
   };
 };
 
-const isUserLoggedIn = () => localStorage.getItem('bearerToken') !== null;
+const isUserLoggedIn = (): boolean => localStorage.getItem('bearerToken') !== null;
 
 export { getUserProfile, isUserLoggedIn };

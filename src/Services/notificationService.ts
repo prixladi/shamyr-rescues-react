@@ -6,7 +6,7 @@ type Props = {
   type: 'success' | 'danger' | 'info' | 'default' | 'warning';
 };
 
-const createNotification = (props: Props) => {
+const createNotification = (props: Props): void => {
   store.addNotification({
     ...props,
     insert: 'top',
@@ -19,7 +19,7 @@ const createNotification = (props: Props) => {
   });
 };
 
-const serverError = () => {
+const serverError = (): void => {
   createNotification({
     title: 'Server Error',
     message: 'Error while calling server interface application might not function properly.',

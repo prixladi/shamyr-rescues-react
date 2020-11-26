@@ -6,9 +6,9 @@ export type Props = {
   children?: React.ReactNode;
 };
 
-const SubmitButton = ({ children }: Props) => {
+const SubmitButton: React.FC<Props> = ({ children }: Props) => {
   const { isSubmitting } = useFormikContext();
-  
+
   return (
     <button disabled={isSubmitting} className="btn" type="submit">
       {children}

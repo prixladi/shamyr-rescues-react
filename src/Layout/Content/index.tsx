@@ -3,13 +3,13 @@ import './index.css';
 import ThemeSwitch from '../ThemeSwitch';
 import Footer from '../Footer';
 
-type ContentProps = {
+type Props = {
   children?: React.ReactNode;
   hideFooter?: boolean;
   id: string;
 };
 
-const Content = ({ children, hideFooter, id }: ContentProps) => (
+const Content: React.FC<Props> = ({ children, hideFooter, id }: Props) => (
   <main id="content">
     <div id={id}>
       <ThemeSwitch />

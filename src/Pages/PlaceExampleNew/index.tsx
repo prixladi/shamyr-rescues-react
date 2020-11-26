@@ -5,7 +5,7 @@ import { PlaceForm } from '../../Components';
 import data from './data.json';
 import Content from '../../Layout/Content';
 
-const PlaceExampleNew = () => {
+const PlaceExampleNew: React.FC = () => {
   const history = useHistory();
 
   return (

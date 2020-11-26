@@ -1,8 +1,8 @@
 const _Home = '/home';
 const _Places = '/places';
-const _Place = (id: number | ':placeId') => `/places/${id}`;
+const _Place = (id: number | ':placeId'): string => `/places/${id}`;
 const _PlaceNew = '/places/new';
-const _PlaceEdit = (id: number | ':placeId') => `/places/${id}/edit`;
+const _PlaceEdit = (id: number | ':placeId'): string => `/places/${id}/edit`;
 const _PlaceExample = '/places/example';
 const _PlaceExampleNew = '/places/example/new';
 const _SignIn = '/signIn';

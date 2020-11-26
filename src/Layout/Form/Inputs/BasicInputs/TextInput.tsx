@@ -7,6 +7,6 @@ type Props = InputHTMLAttributes<HTMLInputElement> & {
   placeholder: string;
 };
 
-const TextInput = ({ ...rest }: Props) => <InputBase type="text" {...rest} />;
+const TextInput: React.FC<Props> = ({ ...rest }: Props) => <InputBase type="text" {...rest} />;
 
 export default TextInput;

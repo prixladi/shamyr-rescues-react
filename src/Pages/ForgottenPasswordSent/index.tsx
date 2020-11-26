@@ -4,7 +4,7 @@ import { NarrowContent } from '../../Components';
 import Content from '../../Layout/Content';
 import { _Home, _SignIn } from '../../Navigation/Routes';
 
-const ForgottenPasswordSent = () => (
+const ForgottenPasswordSent: React.FC = () => (
   <Content id="forgotten-password-sent-page" hideFooter>
     <NarrowContent>
       <h1>Email Sent</h1>

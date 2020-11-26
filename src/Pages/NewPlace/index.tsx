@@ -18,7 +18,7 @@ const initialValues = {
   quote: '',
 };
 
-const NewPlace = () => {
+const NewPlace: React.FC = () => {
   const history = useHistory();
 
   return (

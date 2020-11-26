@@ -13,7 +13,7 @@ type Props = {
   buttonText: string;
 };
 
-const GoogleButton = ({ buttonText }: Props) => {
+const GoogleButton: React.FC<Props> = ({ buttonText }: Props) => {
   const history = useHistory();
 
   return (

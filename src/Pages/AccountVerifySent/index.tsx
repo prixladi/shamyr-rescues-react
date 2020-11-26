@@ -4,7 +4,7 @@ import { NarrowContent } from '../../Components';
 import Content from '../../Layout/Content';
 import { _Home, _SignIn } from '../../Navigation/Routes';
 
-const AccountVerifySent = () => (
+const AccountVerifySent: React.FC = () => (
   <Content id="account-verify-sent-page" hideFooter>
     <NarrowContent>
       <h1>Email Sent</h1>

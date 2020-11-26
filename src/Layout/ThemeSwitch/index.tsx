@@ -2,7 +2,7 @@ import React from 'react';
 import { useTheme } from '../../Hooks';
 import './index.css';
 
-const ThemeSwitch = () => {
+const ThemeSwitch: React.FC = () => {
   const [theme, toggleTheme] = useTheme();
 
   return (

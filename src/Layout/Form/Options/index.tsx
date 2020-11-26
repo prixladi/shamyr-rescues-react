@@ -5,6 +5,6 @@ type Props = {
   children: React.ReactNode;
 };
 
-const Options = ({ children }: Props) => <div className="options">{children}</div>;
+const Options: React.FC<Props> = ({ children }: Props) => <div className="options">{children}</div>;
 
 export default Options;

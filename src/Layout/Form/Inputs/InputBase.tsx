@@ -13,7 +13,7 @@ export type Props = InputHTMLAttributes<HTMLInputElement> & {
   children?: React.ReactNode;
 };
 
-const InputBase = ({ required, type, placeholder, component, children, className, ...rest }: Props) => {
+const InputBase: React.FC<Props> = ({ required, type, placeholder, component, children, className, ...rest }: Props) => {
   const [field, { error }] = useField(rest);
   const { isSubmitting } = useFormikContext();
 

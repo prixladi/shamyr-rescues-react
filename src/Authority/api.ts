@@ -4,17 +4,25 @@ import { _TokenRefresh } from './Routes';
 import { StatusCodes } from 'http-status-codes';
 import { Config } from './config';
 
-const { UNAUTHORIZED } = StatusCodes;
+type Methods = {
+  post: (url: string, data: unknown, options: Options) => Promise<Response | null>;
+  put: (url: string, data: unknown, options: Options) => Promise<Response | null>;
+  patch: (url: string, data: unknown, options: Options) => Promise<Response | null>;
+  get: (url: string, options: Options) => Promise<Response | null>;
+  delete: (url: string, options: Options) => Promise<Response | null>;
+};
 
 type Options = {
   shouldAuth?: boolean;
   config: Config;
   validateStatusCode: (status: number) => boolean;
-  onError: (err: any) => Promise<void>;
+  onError: (err: unknown) => Promise<void>;
   onUnauthorized: () => Promise<void>;
 };
 
-const getHeaders = (shouldAuth?: boolean) => {
+const { UNAUTHORIZED } = StatusCodes;
+
+const getHeaders = (shouldAuth?: boolean): string[][] => {
   const headers = [['Content-Type', 'application/json']];
   if (shouldAuth) {
     headers.push(['Authorization', `Bearer ${localStorage.getItem('bearerToken')}`]);
@@ -23,7 +31,7 @@ const getHeaders = (shouldAuth?: boolean) => {
   return headers;
 };
 
-const tryRefreshToken = async (options: Options) => {
+const tryRefreshToken = async (options: Options): Promise<boolean> => {
   const token = getRefreshToken();
   if (!token) return false;
 
@@ -49,7 +57,7 @@ const tryRefreshToken = async (options: Options) => {
   }
 };
 
-const call = async (path: string, method: string, body: any, options: Options) => {
+const call = async (path: string, method: string, body: unknown, options: Options): Promise<Response | null> => {
   try {
     const bodyString = JSON.stringify(body);
     const url = pathJoin(options.config.url, path);
@@ -83,16 +91,14 @@ const call = async (path: string, method: string, body: any, options: Options) =
   }
 };
 
-export { tryRefreshToken };
-
-export default {
-  post: (url: string, data: any, options: Options) => {
+const methods: Methods = {
+  post: (url: string, data: unknown, options: Options) => {
     return call(url, 'POST', data, options);
   },
-  put: (url: string, data: any, options: Options) => {
+  put: (url: string, data: unknown, options: Options) => {
     return call(url, 'PUT', data, options);
   },
-  patch: (url: string, data: any, options: Options) => {
+  patch: (url: string, data: unknown, options: Options) => {
     return call(url, 'PATCH', data, options);
   },
   get: (url: string, options: Options) => {
@@ -102,3 +108,6 @@ export default {
     return call(url, 'DELETE', null, options);
   },
 };
+
+export { tryRefreshToken };
+export default methods;

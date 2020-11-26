@@ -6,7 +6,7 @@ import './index.css';
 
 type ItemProps = { model: PlacePreviewModel };
 
-const Item = ({ model }: ItemProps) => {
+const Item: React.FC<ItemProps> = ({ model }: ItemProps) => {
   return (
     <div className="place-item">
       <Link to={`${_Places}/${model.id}`}>

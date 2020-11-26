@@ -9,7 +9,7 @@ type FooProps = {
   children: React.ReactNode;
 };
 
-const Footer = ({ place, children }: FooProps) => {
+const Footer: React.FC<Props> = ({ place, children }: FooProps) => {
   const { getName } = useCountries();
   const countryName = useMemo(() => getName(place.countryCode), [getName, place]);
 

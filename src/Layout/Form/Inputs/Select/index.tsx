@@ -10,21 +10,14 @@ export type Props = InputHTMLAttributes<HTMLInputElement> & {
   emptyOption: string;
 };
 
-const Select = ({ required, type, placeholder, options, emptyOption, ...rest }: Props) => {
+const Select: React.FC<Props> = ({ required, options, emptyOption, ...rest }: Props) => {
   const [field] = useField(rest);
 
   let className = 'select';
   if (!field.value) className += ' placeholder';
 
   return (
-    <InputBase
-      type="text"
-      component="select"
-      name={field.name}
-      placeholder={emptyOption}
-      className={className}
-      required={required}
-    >
+    <InputBase type="text" component="select" name={field.name} placeholder={emptyOption} className={className} required={required}>
       <optgroup>
         <option hidden value="" label={emptyOption} />
         {options.map((opt) => (

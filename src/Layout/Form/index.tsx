@@ -9,12 +9,12 @@ type Props<Values> = {
   title?: string;
   onSubmit: (values: Values, helpers: FormikHelpers<Values>) => Promise<void>;
   initialValues: Values;
-  validationSchema?: any;
+  validationSchema?: unknown;
   type?: 'narrow' | 'normal' | 'wide';
   children?: React.ReactNode;
 };
 
-const Form = <Values extends {}>({ title, onSubmit, initialValues, validationSchema, type, children }: Props<Values>) => {
+const Form = <Values extends unknown>({ title, onSubmit, initialValues, validationSchema, type, children }: Props<Values>): JSX.Element => {
   const onSubmitWrapper = useCallback(
     async (values: Values, helpers: FormikHelpers<Values>) => {
       helpers.setSubmitting(true);

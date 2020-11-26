@@ -11,7 +11,7 @@ type Match = {
   placeId: string;
 };
 
-const Place = () => {
+const Place: React.FC = () => {
   const match = useRouteMatch<Match>();
   const place = usePlace(Number(match.params.placeId));
 

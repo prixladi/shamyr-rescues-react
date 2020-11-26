@@ -7,11 +7,13 @@ import { StatusCodes } from 'http-status-codes';
 import { notificationService } from '../Services';
 import { Manager } from '../Authority';
 
-const { OK, MULTIPLE_CHOICES, UNAUTHORIZED } = StatusCodes;
-
-const client = axios.create({
-  baseURL: _BaseUrl,
-});
+type Client = {
+  post: <T = unknown>(url: string, data: unknown, options: Options) => Promise<AxiosResponse<T> | null>;
+  put: <T = unknown>(url: string, data: unknown, options: Options) => Promise<AxiosResponse<T> | null>;
+  patch: <T = unknown>(url: string, data: unknown, options: Options) => Promise<AxiosResponse<T> | null>;
+  get: <T = unknown>(url: string, options: Options) => Promise<AxiosResponse<T> | null>;
+  delete: <T = unknown>(url: string, options: Options) => Promise<AxiosResponse<T> | null>;
+};
 
 type Options = AxiosRequestConfig & {
   expectedStatus: number[];
@@ -20,6 +22,12 @@ type Options = AxiosRequestConfig & {
 };
 
 type CallAction<T> = (client: AxiosInstance, config: AxiosRequestConfig) => Promise<AxiosResponse<T>>;
+
+const { OK, MULTIPLE_CHOICES, UNAUTHORIZED } = StatusCodes;
+
+const client = axios.create({
+  baseURL: _BaseUrl,
+});
 
 const getHeaders = (options: Options) => {
   if (options.shouldAuth)
@@ -41,14 +49,14 @@ const createCallbacks = (history: History) => ({
     history.push(_SignIn);
     return Promise.resolve();
   },
-  onError: (err: any) => {
+  onError: (err: unknown) => {
     console.error(err);
     notificationService.serverError();
     return Promise.resolve();
   },
 });
 
-const createClient = (manager: Manager) => {
+const createClient = (manager: Manager): Client => {
   const call = async <T>(action: CallAction<T>, options: Options) => {
     try {
       const config: AxiosRequestConfig = {
@@ -56,7 +64,7 @@ const createClient = (manager: Manager) => {
         ...options,
       };
 
-      let response = await action(client, { ...config, headers: getHeaders(options) });
+      const response = await action(client, { ...config, headers: getHeaders(options) });
 
       if (response.status === UNAUTHORIZED) {
         if (await manager.refreshToken(createCallbacks(options.history))) {
@@ -76,19 +84,19 @@ const createClient = (manager: Manager) => {
   };
 
   return {
-    post: <T = any>(url: string, data: any, options: Options) => {
+    post: <T = unknown>(url: string, data: unknown, options: Options) => {
       return call<T>((axios, config) => axios.post(url, data, config), options);
     },
-    put: <T = any>(url: string, data: any, options: Options) => {
+    put: <T = unknown>(url: string, data: unknown, options: Options) => {
       return call<T>((axios, config) => axios.put(url, data, config), options);
     },
-    patch: <T = any>(url: string, data: any, options: Options) => {
+    patch: <T = unknown>(url: string, data: unknown, options: Options) => {
       return call<T>((axios, config) => axios.patch(url, data, config), options);
     },
-    get: <T = any>(url: string, options: Options) => {
+    get: <T = unknown>(url: string, options: Options) => {
       return call<T>((axios, config) => axios.get(url, config), options);
     },
-    delete: <T = any>(url: string, options: Options) => {
+    delete: <T = unknown>(url: string, options: Options) => {
       return call<T>((axios, config) => axios.delete(url, config), options);
     },
   };

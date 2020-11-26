@@ -11,7 +11,7 @@ type NavigationProps = {
   children: React.ReactNode;
 };
 
-const NavigationHeader = () => (
+const NavigationHeader: React.FC = () => (
   <div className="bm-header">
     <span className="bm-title">Shamyr</span>{' '}
     <span className="bm-subtitle">
@@ -20,7 +20,7 @@ const NavigationHeader = () => (
   </div>
 );
 
-const NavigationFooter = () => (
+const NavigationFooter: React.FC = () => (
   <div className="bm-footer">
     <a href="https://twitter.com">
       <FontAwesomeIcon icon={faTwitter} border />
@@ -42,7 +42,7 @@ const NavigationFooter = () => (
 
 const NavigationBody = ({ children }: NavigationProps) => <div>{children}</div>;
 
-const Navigation = (props: NavigationProps) => {
+const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
   const dimensions = useWindowDimensions();
 
   return (

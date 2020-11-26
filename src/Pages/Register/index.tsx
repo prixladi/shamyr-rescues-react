@@ -37,7 +37,7 @@ const schema = yup.object().shape({
   familyName: yup.string(),
 });
 
-const Register = () => {
+const Register: React.FC = () => {
   const history = useHistory();
 
   const handleSubmit = async (values: Values, { setErrors }: FormikHelpers<Values>) => {

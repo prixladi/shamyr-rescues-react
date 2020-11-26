@@ -5,7 +5,7 @@ export type Props = InputHTMLAttributes<HTMLInputElement> & {
   error?: string;
 };
 
-const InputError = ({ error }: Props) => {
+const InputError: React.FC<Props> = ({ error }: Props) => {
   if (!error) return null;
 
   return <div className="inputError">{error}</div>;

@@ -6,10 +6,15 @@ import * as notificationService from './notificationService';
 import { ErrorModel } from '../Authority/models';
 import { authorityManager } from '../clients';
 
+type Callbacks = {
+  onUnauthorized: () => Promise<void>;
+  onError: (err: any) => Promise<void>;
+};
+
 const { NOT_FOUND, CONFLICT } = StatusCodes;
 const EMAIL_NOT_VERIFIED = 430;
 
-const createCallbacks = (history: History) => ({
+const createCallbacks = (history: History): Callbacks => ({
   onUnauthorized: () => {
     history.push(_SignIn);
     return Promise.resolve();
@@ -48,8 +53,7 @@ const passwordLogin = async (model: PasswordLoginModel, history: History) => {
       email: 'Invalid email or password.',
       password: 'Invalid email or password.',
     };
-  }
-  else {
+  } else {
     history.push(_Profile);
   }
 };

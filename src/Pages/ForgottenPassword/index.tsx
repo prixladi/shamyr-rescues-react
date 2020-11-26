@@ -23,7 +23,7 @@ const schema = yup.object().shape({
   email: yup.string().email('Invalid email format.').required(requiredText('email')),
 });
 
-const ForgottenPassword = () => {
+const ForgottenPassword: React.FC = () => {
   const history = useHistory();
 
   const handleSubmit = async (values: Values) => {

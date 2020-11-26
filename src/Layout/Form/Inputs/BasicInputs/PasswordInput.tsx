@@ -7,6 +7,8 @@ type Props = InputHTMLAttributes<HTMLInputElement> & {
   placeholder?: string;
 };
 
-const PasswordInput = ({ placeholder, ...rest }: Props) => <InputBase type="password" placeholder={placeholder || 'Password'} {...rest} />;
+const PasswordInput: React.FC<Props> = ({ placeholder, ...rest }: Props) => (
+  <InputBase type="password" placeholder={placeholder || 'Password'} {...rest} />
+);
 
 export default PasswordInput;

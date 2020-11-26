@@ -9,7 +9,7 @@ export type Props = InputHTMLAttributes<HTMLInputElement> & {
   placeholder: string;
 };
 
-const TextArea = ({ required, type, placeholder, ...rest }: Props) => {
+const TextArea: React.FC<Props> = ({ required, placeholder, ...rest }: Props) => {
   const [field] = useField(rest);
 
   return (

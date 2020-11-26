@@ -9,12 +9,12 @@ type ItemProps = {
   path: string;
 };
 
-const getFirstPart = (path: string) => {
+const getFirstPart = (path: string): string => {
   const parts = path.split('/');
   return '/' + parts[1];
 };
 
-const Item = ({ text, id, path }: ItemProps) => {
+const Item: React.FC<ItemProps> = ({ text, id, path }: ItemProps) => {
   const location = useLocation();
 
   let classes = 'bm-item';

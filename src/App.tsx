@@ -6,9 +6,9 @@ import Router from './Router';
 import ReactNotification from 'react-notifications-component';
 
 import 'react-notifications-component/dist/theme.css';
-import 'animate.css/animate.compat.css'
+import 'animate.css/animate.compat.css';
 
-const App = () => (
+const App: React.FC = () => (
   <>
     <ReactNotification />
     <BrowserRouter>

@@ -21,9 +21,9 @@ export type TokensModel = {
 };
 
 export type EmailNotVerifiedModel = {
-  User : {
-    Email: string
-  }
+  User: {
+    Email: string;
+  };
 };
 
 export type ErrorModel = {

@@ -7,7 +7,12 @@ type OverlayProps = {
   children: React.ReactNode;
 };
 
-const Overlay = ({ children }: OverlayProps) => <div id="overlay"> {children} </div>;
+type OverlayType = React.FC<OverlayProps> & {
+  Navigation: typeof Navigation;
+  Content: typeof Content;
+};
+
+const Overlay: OverlayType = ({ children }: OverlayProps) => <div id="overlay"> {children} </div>;
 
 Overlay.Navigation = Navigation;
 Overlay.Content = Content;

@@ -6,19 +6,14 @@ import { _AccountVerify, _Home, _SignIn } from '../../Navigation/Routes';
 import { authService } from '../../Services';
 import queryString from 'query-string';
 
-type Query = {
-  email: string;
-  token: string;
-};
-
 type State = boolean | 400 | 404 | 409;
 
-type Props = {
+type InfoProps = {
   children: React.ReactNode;
   title: string;
 };
 
-const Info = ({ children, title }: Props) => (
+const Info: React.FC<InfoProps> = ({ children, title }: InfoProps) => (
   <Content id="account-verify-sent-page" hideFooter>
     <NarrowContent>
       <h1>{title}</h1>
@@ -27,7 +22,7 @@ const Info = ({ children, title }: Props) => (
   </Content>
 );
 
-const AccountVerified = () => {
+const AccountVerified: React.FC = () => {
   const { search } = useLocation();
   const [state, setState] = useState(false as State);
   const history = useHistory();

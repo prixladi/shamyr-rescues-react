@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Content from '../../Layout/Content';
 import { _Places } from '../../Navigation/Routes';
 
-const Home = () => (
+const Home: React.FC = () => (
   <Content id="home-page">
     <h1 className="label">Shamyr Rescues</h1>
     <p>

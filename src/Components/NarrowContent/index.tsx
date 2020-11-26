@@ -5,6 +5,6 @@ type Props = {
   children: React.ReactNode;
 };
 
-const NarrowContent = ({ children }: Props) => <div className="inner-content">{children}</div>;
+const NarrowContent: React.FC<Props> = ({ children }: Props) => <div className="inner-content">{children}</div>;
 
 export default NarrowContent;

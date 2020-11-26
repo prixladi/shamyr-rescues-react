@@ -1,7 +1,16 @@
 import { useCallback } from 'react';
 import countries from '../Data/countriesData.json';
 
-type Dictionary = Object & { [id: string]: string };
+type CountriesUtils = {
+  getName: (code: string) => string;
+  getCode: (name: string) => string;
+  getAsOptions: () => {
+    key: string;
+    value: string;
+  }[];
+};
+
+type Dictionary = { [id: string]: string };
 
 const nameByCodes: Dictionary = {};
 const codeByNames: Dictionary = {};
@@ -20,7 +29,7 @@ const initCountries = () => {
 
 initCountries();
 
-const useCountries = () => {
+const useCountries = (): CountriesUtils => {
   const getName = useCallback((code: string) => {
     return nameByCodes[code];
   }, []);

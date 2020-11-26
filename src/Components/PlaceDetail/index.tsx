@@ -7,7 +7,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-const PlaceDetail = ({ place, children }: Props) => (
+const PlaceDetail: React.FC<Props> = ({ place, children }: Props) => (
   <div>
     <h1 className="label">{place.name}</h1>
     {place.description1 && <p>{place.description1}</p>}

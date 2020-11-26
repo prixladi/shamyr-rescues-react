@@ -1,21 +1,21 @@
 import { TokensModel } from './models';
 
-const getBearerToken = () => localStorage.getItem('bearerToken');
+const getBearerToken = (): string | null => localStorage.getItem('bearerToken');
 
-const getRefreshToken = () => localStorage.getItem('refreshToken');
+const getRefreshToken = (): string | null => localStorage.getItem('refreshToken');
 
-const setTokens = (tokens: TokensModel) => {
+const setTokens = (tokens: TokensModel): void => {
   localStorage.setItem('refreshToken', tokens.refreshToken);
   localStorage.setItem('bearerToken', tokens.bearerToken);
 };
 
-const unsetTokens = () => {
+const unsetTokens = (): void => {
   localStorage.removeItem('refreshToken');
   localStorage.removeItem('bearerToken');
 };
 
-function pathJoin(...parts: string[]) {
-  var replace = new RegExp(`/{1,}`, 'g');
+function pathJoin(...parts: string[]): string {
+  const replace = new RegExp(`/{1,}`, 'g');
   return parts.join('/').replace(replace, '/').replace(':/', '://');
 }
 

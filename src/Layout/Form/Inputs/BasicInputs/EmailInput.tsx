@@ -7,6 +7,8 @@ type Props = InputHTMLAttributes<HTMLInputElement> & {
   placeholder?: string;
 };
 
-const EmailInput = ({ placeholder, ...rest }: Props) => <InputBase type="email" placeholder={placeholder || 'Email Address'} {...rest} />;
+const EmailInput: React.FC<Props> = ({ placeholder, ...rest }: Props) => (
+  <InputBase type="email" placeholder={placeholder || 'Email Address'} {...rest} />
+);
 
 export default EmailInput;

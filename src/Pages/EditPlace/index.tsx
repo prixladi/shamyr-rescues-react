@@ -10,13 +10,14 @@ type Match = {
   placeId: string;
 };
 
-const EditPlace = () => {
+const EditPlace: React.FC = () => {
   const match = useRouteMatch<Match>();
   const place = usePlace(Number(match.params.placeId));
   const history = useHistory();
 
   if (place === null) return null;
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { id, userId, removed, createdAt, updatedAt, ...rest } = place;
 
   return (

@@ -24,7 +24,7 @@ const schema = yup.object().shape({
   email: yup.string().email('Invalid email format.').required(requiredText('email')),
 });
 
-const ForgottenPassword = () => {
+const AccountVerify: React.FC = () => {
   const history = useHistory();
   const { state } = useLocation<RouteState>();
 
@@ -57,4 +57,4 @@ const ForgottenPassword = () => {
   );
 };
 
-export default ForgottenPassword;
+export default AccountVerify;

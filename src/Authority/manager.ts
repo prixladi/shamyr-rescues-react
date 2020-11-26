@@ -29,7 +29,7 @@ type Result<TData = void> = {
 };
 
 type Callbacks = {
-  onError: (err: any) => Promise<void>;
+  onError: (err: unknown) => Promise<void>;
   onUnauthorized: () => Promise<void>;
 };
 

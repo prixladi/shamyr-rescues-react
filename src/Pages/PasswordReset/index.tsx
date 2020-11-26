@@ -19,7 +19,7 @@ const schema = yup.object().shape({
   password: yup.string().min(6, tooShortText('Password', 6)).required(requiredText('Password')),
 });
 
-const PasswordReset = () => {
+const PasswordReset: React.FC = () => {
   const { search } = useLocation();
   const history = useHistory();
   const query = useMemo(() => queryString.parse(search), [search]);

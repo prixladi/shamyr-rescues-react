@@ -11,7 +11,7 @@ import { authorityManager } from '../../clients';
 
 const { SubmitButton } = Form;
 
-const Profile = () => {
+const Profile: React.FC = () => {
   const [user] = useState(authorityManager.getUserProfile());
   const history = useHistory();
 

@@ -4,9 +4,13 @@ import { usePlaces } from '../../Hooks';
 import Content from '../../Layout/Content';
 import Item from './Item';
 
-const Loading = ({ hasMore }: { hasMore: boolean }) => (hasMore ? <h4>Loading...</h4> : null);
+type LoadingProps = {
+  hasMore: boolean;
+};
 
-const Places = () => {
+const Loading: React.FC<LoadingProps> = ({ hasMore }: { hasMore: boolean }) => (hasMore ? <h4>Loading...</h4> : null);
+
+const Places: React.FC = () => {
   const [places, hasMore, fetchNext] = usePlaces(true);
 
   return (

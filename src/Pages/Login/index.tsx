@@ -29,7 +29,7 @@ const schema = yup.object().shape<Values>({
   password: yup.string().min(6, tooShortText('Password', 6)).required(requiredText('Password')),
 });
 
-const Login = () => {
+const Login: React.FC = () => {
   const history = useHistory();
 
   const handleSubmit = useCallback(

@@ -6,7 +6,7 @@ import { _Home, _Places, _SignIn, _Profile } from './Routes';
 
 const { Navigation } = Overlay;
 
-const Nav = () => {
+const Nav: React.FC = () => {
   const [loggedIn, setLoggedIn] = useState(false);
   const location = useLocation();
 

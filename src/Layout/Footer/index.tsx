@@ -4,7 +4,7 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faUser } from '@fortawesome/free-solid-svg-icons';
 import './index.css';
 
-const Footer = () => (
+const Footer: React.FC = () => (
   <footer>
     <p>
       This project is developed and maintained by{' '}

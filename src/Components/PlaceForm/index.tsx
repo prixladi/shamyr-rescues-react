@@ -45,7 +45,7 @@ const schema = yup.object<Values>().shape({
   quote: yup.string().max(2000, tooLongText('Quote', 2000)),
 });
 
-const PlaceForm = ({ title, handleSubmit, submitText, initialValues, children, type }: Props) => {
+const PlaceForm: React.FC<Props> = ({ title, handleSubmit, submitText, initialValues, children, type }: Props) => {
   const { getAsOptions } = useCountries();
 
   return (

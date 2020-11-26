@@ -39,7 +39,7 @@ import {
   AccountVerified,
 } from './Pages';
 
-const Router = () => (
+const Router: React.FC = () => (
   <Switch>
     <Route path="/" exact>
       <Redirect to={_Home} />
