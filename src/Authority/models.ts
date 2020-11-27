@@ -21,11 +21,11 @@ export type TokensModel = {
 };
 
 export type EmailNotVerifiedModel = {
-  User: {
-    Email: string;
+  user: {
+    email: string;
   };
 };
 
 export type ErrorModel = {
-  Message: string;
+  message: string;
 };

@@ -31,7 +31,7 @@ const register = async function (model: NewUserModel, history: History) {
 
   if (result.status === CONFLICT) {
     const data = result.data as ErrorModel;
-    if (data.Message.includes('email')) {
+    if (data.message.includes('email')) {
       return { email: 'User with this email already exists.' };
     }
 
@@ -47,7 +47,7 @@ const passwordLogin = async (model: PasswordLoginModel, history: History) => {
   const result = await authorityManager.passwordLogin(model, createCallbacks(history));
 
   if (result.status === EMAIL_NOT_VERIFIED) {
-    history.push(_AccountVerify, { email: (result.data as EmailNotVerifiedModel).User.Email });
+    history.push(_AccountVerify, { email: (result.data as EmailNotVerifiedModel).user.email });
   } else if (!result.ok) {
     return {
       email: 'Invalid email or password.',
