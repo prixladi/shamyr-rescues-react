@@ -42,7 +42,7 @@ const NavigationFooter: React.FC = () => (
 
 const NavigationBody = ({ children }: NavigationProps) => <div>{children}</div>;
 
-const Navigation: React.FC<NavigationProps> = (props: NavigationProps) => {
+const Navigation = (props: NavigationProps) => {
   const dimensions = useWindowDimensions();
 
   return (

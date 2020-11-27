@@ -4,12 +4,12 @@ import { faPaperclip, faAddressBook } from '@fortawesome/free-solid-svg-icons';
 import { PlaceDetailModel } from '../../../Api';
 import useCountries from '../../../Hooks/useCountries';
 
-type FooProps = {
+type Props = {
   place: PlaceDetailModel;
   children: React.ReactNode;
 };
 
-const Footer: React.FC<Props> = ({ place, children }: FooProps) => {
+const Footer: React.FC<Props> = ({ place, children }: Props) => {
   const { getName } = useCountries();
   const countryName = useMemo(() => getName(place.countryCode), [getName, place]);
 
