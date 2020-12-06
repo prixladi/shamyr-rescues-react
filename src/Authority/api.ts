@@ -33,7 +33,9 @@ const getHeaders = (shouldAuth?: boolean): string[][] => {
 
 const tryRefreshToken = async (options: Options): Promise<boolean> => {
   const token = getRefreshToken();
-  if (!token) return false;
+  if (!token) {
+    return false;
+  }
 
   try {
     const result = await fetch(pathJoin(options.config.url, _TokenRefresh), {

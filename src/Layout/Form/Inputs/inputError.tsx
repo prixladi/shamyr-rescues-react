@@ -6,7 +6,9 @@ export type Props = InputHTMLAttributes<HTMLInputElement> & {
 };
 
 const InputError: React.FC<Props> = ({ error }: Props) => {
-  if (!error) return null;
+  if (!error) {
+    return null;
+  }
 
   return <div className="inputError">{error}</div>;
 };

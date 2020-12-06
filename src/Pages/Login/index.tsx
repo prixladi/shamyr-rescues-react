@@ -1,4 +1,4 @@
-import { FormikHelpers } from 'formik';
+import { FormikHelpers, FormikValues } from 'formik';
 import React, { useCallback } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import Form from '../../Layout/Form';
@@ -14,7 +14,7 @@ import { GoogleButton } from '../../Components';
 
 const { PasswordInput, EmailInput, SubmitButton, Options } = Form;
 
-type Values = {
+type Values = FormikValues & {
   email: string;
   password: string;
 };
@@ -24,7 +24,7 @@ const InitialValues: Values = {
   password: '',
 };
 
-const schema = yup.object().shape<Values>({
+const schema = yup.object().shape({
   email: yup.string().email('Invalid email format.').required(requiredText('Email')),
   password: yup.string().min(6, tooShortText('Password', 6)).required(requiredText('Password')),
 });
@@ -36,9 +36,11 @@ const Login: React.FC = () => {
     async (values: Values, { setErrors }: FormikHelpers<Values>) => {
       const errors = await authService.passwordLogin(values, history);
 
-      if (errors) setErrors(errors);
+      if (errors) {
+        setErrors(errors);
+      }
     },
-    [history]
+    [history],
   );
 
   return (

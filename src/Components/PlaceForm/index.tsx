@@ -6,11 +6,11 @@ import { invalidUrlText, requiredText, tooLongText, tooShortText } from '../../U
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPaw } from '@fortawesome/free-solid-svg-icons';
 import { useCountries } from '../../Hooks';
-import { FormikHelpers } from 'formik';
+import { FormikHelpers, FormikValues } from 'formik';
 
 const { Textarea, Select, TextInput } = Form;
 
-type Values = {
+type Values = FormikValues & {
   name: string;
   shortDescription: string;
   countryCode: string;
@@ -32,7 +32,7 @@ type Props = {
   children?: React.ReactNode;
 };
 
-const schema = yup.object<Values>().shape({
+const schema = yup.object().shape({
   name: yup.string().min(5, tooShortText('Name', 5)).max(80, 'Name is too long (max 80 characters).').required(requiredText('Name')),
   shortDescription: yup.string().max(350, tooLongText('Short description', 350)).required(requiredText('Short description')),
   countryCode: yup.string().max(2).required(),

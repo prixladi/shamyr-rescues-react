@@ -30,17 +30,21 @@ const client = axios.create({
 });
 
 const getHeaders = (options: Options) => {
-  if (options.shouldAuth)
+  if (options.shouldAuth) {
     return {
       Authorization: `Bearer ${localStorage.getItem('bearerToken')}`,
     };
+  }
 
   return {};
 };
 
 const validateStatus = (options: Options) => (status: number) => {
-  if (status === UNAUTHORIZED) return true;
-  else if (options.expectedStatus.length === 0) return status >= OK && status < MULTIPLE_CHOICES;
+  if (status === UNAUTHORIZED) {
+    return true;
+  } else if (options.expectedStatus.length === 0) {
+    return status >= OK && status < MULTIPLE_CHOICES;
+  }
   return options.expectedStatus.includes(status);
 };
 

@@ -18,7 +18,9 @@ const Item: React.FC<ItemProps> = ({ text, id, path }: ItemProps) => {
   const location = useLocation();
 
   let classes = 'bm-item';
-  if (getFirstPart(location.pathname) === path) classes += ' bm-item-active';
+  if (getFirstPart(location.pathname) === path) {
+    classes += ' bm-item-active';
+  }
 
   return (
     <Link to={path} id={id} className={classes}>

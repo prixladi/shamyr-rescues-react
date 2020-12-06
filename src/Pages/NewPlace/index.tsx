@@ -28,7 +28,9 @@ const NewPlace: React.FC = () => {
         title="Create Place"
         handleSubmit={async (values) => {
           const location = await placesService.create(values, history);
-          if (!location) return;
+          if (!location) {
+            return;
+          }
 
           const match = location.match(/places\/([1-9]+[0-9]*)/);
           if (!match) {

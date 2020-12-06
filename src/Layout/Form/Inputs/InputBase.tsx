@@ -18,7 +18,9 @@ const InputBase: React.FC<Props> = ({ required, type, placeholder, component, ch
   const { isSubmitting } = useFormikContext();
 
   let fullClassName = (className ?? '') + ' user-input';
-  if (error) fullClassName += ' error-input';
+  if (error) {
+    fullClassName += ' error-input';
+  }
 
   return (
     <div className="field-wrapper">

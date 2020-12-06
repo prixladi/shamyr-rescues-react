@@ -33,13 +33,28 @@ type Callbacks = {
   onUnauthorized: () => Promise<void>;
 };
 
-const createManager = (config: Config) => {
+type Manager = {
+  register: (model: NewUserModel, callbacks: Callbacks) => Promise<Result<ErrorModel | void>>;
+  passwordLogin: (model: PasswordLoginModel, callbacks: Callbacks) => Promise<Result<void | EmailNotVerifiedModel>>;
+  googleLogin: (model: GoogleLoginModel, callbacks: Callbacks) => Promise<Result<void>>;
+  sendForgottenPassword: (email: string, callbacks: Callbacks) => Promise<Result<void>>;
+  resetPassword: (passwordToken: string, id: string, password: string, callbacks: Callbacks) => Promise<Result<void>>;
+  sendAccountVerification: (email: string, callbacks: Callbacks) => Promise<Result<void>>;
+  getUserProfile: () => utils.UserProfile | null;
+  isUserLoggedIn: () => boolean;
+  verifyAccount: (email: string, token: string, callbacks: Callbacks) => Promise<Result<void>>;
+  refreshToken: (callbacks: Callbacks) => Promise<boolean>;
+  logout: () => Promise<void>;
+  getTokens: () => utils.Tokens;
+};
+
+const createManager = (config: Config): Manager => {
   const register = async function (model: NewUserModel, callbacks: Callbacks): Promise<Result<ErrorModel | void>> {
     const validateStatus = any200(CONFLICT);
     const result = await api.post(
       `${_Users}`,
       { ...model, clientId: config.clientId },
-      { config, ...callbacks, validateStatusCode: validateStatus }
+      { config, ...callbacks, validateStatusCode: validateStatus },
     );
 
     if (result?.status === CONFLICT) {
@@ -98,7 +113,7 @@ const createManager = (config: Config) => {
     const result = await api.patch(
       _EmailPasswordReset(email),
       { clientId: config.clientId },
-      { config, ...callbacks, validateStatusCode: validateStatus }
+      { config, ...callbacks, validateStatusCode: validateStatus },
     );
 
     return {
@@ -112,7 +127,7 @@ const createManager = (config: Config) => {
     const result = await api.patch(
       _UserPasswordReset(id),
       { password, passwordToken },
-      { config, ...callbacks, validateStatusCode: validateStatus }
+      { config, ...callbacks, validateStatusCode: validateStatus },
     );
 
     return {
@@ -126,7 +141,7 @@ const createManager = (config: Config) => {
     const result = await api.patch(
       _EmailVerification(email),
       { clientId: config.clientId },
-      { config, ...callbacks, validateStatusCode: validateStatus }
+      { config, ...callbacks, validateStatusCode: validateStatus },
     );
 
     return {
@@ -154,13 +169,6 @@ const createManager = (config: Config) => {
     return Promise.resolve();
   };
 
-  const getTokens = () => {
-    return {
-      bearerToken: localStorage.getItem('bearerToken'),
-      refreshToken: localStorage.getItem('refreshToken'),
-    };
-  };
-
   return {
     register,
     passwordLogin,
@@ -171,7 +179,6 @@ const createManager = (config: Config) => {
     verifyAccount,
     refreshToken,
     logout,
-    getTokens,
     ...utils,
   };
 };

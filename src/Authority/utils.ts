@@ -1,11 +1,17 @@
 import jwt_decode from 'jwt-decode';
+import { getBearerToken, getRefreshToken } from './helpers';
 
-type UserProfile = {
+export type UserProfile = {
   id: string;
   email: string;
   username?: string;
   givenName?: string;
   familyName?: string;
+};
+
+export type Tokens = {
+  bearerToken: string | null;
+  refreshToken: string | null;
 };
 
 const idClaim = 'name';
@@ -16,7 +22,9 @@ const familyNameClaim = 'family_name';
 
 const getUserProfile = (): UserProfile | null => {
   const bearerToken = localStorage.getItem('bearerToken');
-  if (!bearerToken) return null;
+  if (!bearerToken) {
+    return null;
+  }
 
   const token = jwt_decode(bearerToken) as { [claim: string]: string };
 
@@ -31,4 +39,11 @@ const getUserProfile = (): UserProfile | null => {
 
 const isUserLoggedIn = (): boolean => localStorage.getItem('bearerToken') !== null;
 
-export { getUserProfile, isUserLoggedIn };
+const getTokens = (): Tokens => {
+  return {
+    bearerToken: getBearerToken(),
+    refreshToken: getRefreshToken(),
+  };
+};
+
+export { getTokens, getUserProfile, isUserLoggedIn };

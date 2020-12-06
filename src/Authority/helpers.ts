@@ -15,7 +15,7 @@ const unsetTokens = (): void => {
 };
 
 function pathJoin(...parts: string[]): string {
-  const replace = new RegExp(`/{1,}`, 'g');
+  const replace = new RegExp('/{1,}', 'g');
   return parts.join('/').replace(replace, '/').replace(':/', '://');
 }
 

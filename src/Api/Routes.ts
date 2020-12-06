@@ -6,4 +6,4 @@ const _Users = 'users';
 const _Places = 'places';
 const _Place = (id: number): string => `places/${id}`;
 
-export { _Users, _BaseUrl, _Places, _Place };
+export { _BaseUrl, _Users, _Places, _Place };

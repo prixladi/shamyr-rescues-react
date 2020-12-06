@@ -15,7 +15,9 @@ const EditPlace: React.FC = () => {
   const place = usePlace(Number(match.params.placeId));
   const history = useHistory();
 
-  if (place === null) return null;
+  if (place === null) {
+    return null;
+  }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { id, userId, removed, createdAt, updatedAt, ...rest } = place;

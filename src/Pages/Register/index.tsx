@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { _SignIn } from '../../Navigation/Routes';
 import Form from '../../Layout/Form';
-import { FormikHelpers } from 'formik';
+import { FormikHelpers, FormikValues } from 'formik';
 import { authService } from '../../Services';
 import * as yup from 'yup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,7 +13,7 @@ import { GoogleButton } from '../../Components';
 
 const { PasswordInput, EmailInput, TextInput, SubmitButton, Options } = Form;
 
-type Values = {
+type Values = FormikValues & {
   username: string;
   email: string;
   password: string;
@@ -42,7 +42,9 @@ const Register: React.FC = () => {
 
   const handleSubmit = async (values: Values, { setErrors }: FormikHelpers<Values>) => {
     const errors = await authService.register(values, history);
-    if (errors) setErrors(errors);
+    if (errors) {
+      setErrors(errors);
+    }
   };
 
   return (

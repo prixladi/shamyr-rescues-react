@@ -9,7 +9,9 @@ const usePlace = (id: number): PlaceDetailModel | null => {
 
   const fetch = useCallback(async () => {
     const place = await placesService.getById(id, history);
-    if (place) setPlace(place);
+    if (place) {
+      setPlace(place);
+    }
   }, [id, history]);
 
   useEffect(() => {

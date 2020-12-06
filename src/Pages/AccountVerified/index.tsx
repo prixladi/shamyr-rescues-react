@@ -41,7 +41,7 @@ const AccountVerified: React.FC = () => {
     tryVerify();
   }, [tryVerify]);
 
-  if (state === 400)
+  if (state === 400) {
     return (
       <Info title="Invalid request!">
         <p>
@@ -53,18 +53,20 @@ const AccountVerified: React.FC = () => {
         </p>
       </Info>
     );
+  }
 
-  if (state === 404)
+  if (state === 404) {
     return (
       <Info title="Account doesn't exist!">
         <p>
-          Account with email attached to this request doesn't exist you can try <Link to={_SignIn}> Sign-in </Link> again.
+          Account with email attached to this request doesn{"'"}t exist you can try <Link to={_SignIn}> Sign-in </Link> again.
           <Link to={_Home}>Home</Link> page.
         </p>
       </Info>
     );
+  }
 
-  if (state === 409)
+  if (state === 409) {
     return (
       <Info title="Already verified!">
         <p>
@@ -72,8 +74,9 @@ const AccountVerified: React.FC = () => {
         </p>
       </Info>
     );
+  }
 
-  if (state)
+  if (state) {
     return (
       <Info title="Account Verified!">
         <p>
@@ -81,6 +84,7 @@ const AccountVerified: React.FC = () => {
         </p>
       </Info>
     );
+  }
 
   return null;
 };

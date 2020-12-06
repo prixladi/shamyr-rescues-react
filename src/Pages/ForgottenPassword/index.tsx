@@ -8,10 +8,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { requiredText } from '../../Utils/Validation';
 import Content from '../../Layout/Content';
+import { FormikValues } from 'formik';
 
 const { EmailInput, SubmitButton, Options } = Form;
 
-type Values = {
+type Values = FormikValues & {
   email: string;
 };
 

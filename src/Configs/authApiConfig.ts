@@ -1,10 +1,6 @@
-declare const config: {
-  apiUrl: string;
-  authApiUrl: string;
-  authApiClientId: string;
+const config = {
+  url: window.config.authApiUrl,
+  clientId: window.config.authApiClientId,
 };
 
-export default {
-  url: config.authApiUrl,
-  clientId: config.authApiClientId,
-};
+export default config;

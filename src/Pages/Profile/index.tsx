@@ -32,7 +32,7 @@ const Profile: React.FC = () => {
   return (
     <Content id="profile-page" hideFooter>
       <div className="profile-data">
-        <h1>User's Profile</h1>
+        <h1>User{"'"}s Profile</h1>
         <p>
           {user.username && (
             <>

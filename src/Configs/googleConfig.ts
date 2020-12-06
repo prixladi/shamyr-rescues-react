@@ -1,7 +1,5 @@
-declare const config: {
-  googleClientId: string;
+const config = {
+  clientId: window.config.googleClientId,
 };
 
-export default {
-  clientId: config.googleClientId,
-};
+export default config;

@@ -8,7 +8,21 @@ import { authorityManager } from '../clients';
 
 type Callbacks = {
   onUnauthorized: () => Promise<void>;
-  onError: (err: any) => Promise<void>;
+  onError: (err: unknown) => Promise<void>;
+};
+
+type RegisterError = {
+  username?: string;
+  email?: string;
+};
+
+type LoginError = {
+  email?: string;
+  password?: string;
+};
+
+type EmailError = {
+  email?: string;
 };
 
 const { NOT_FOUND, CONFLICT } = StatusCodes;
@@ -19,14 +33,14 @@ const createCallbacks = (history: History): Callbacks => ({
     history.push(_SignIn);
     return Promise.resolve();
   },
-  onError: (err: any) => {
+  onError: (err: unknown) => {
     console.error(err);
     notificationService.serverError();
     return Promise.resolve();
   },
 });
 
-const register = async function (model: NewUserModel, history: History) {
+const register = async function (model: NewUserModel, history: History): Promise<RegisterError | undefined> {
   const result = await authorityManager.register(model, createCallbacks(history));
 
   if (result.status === CONFLICT) {
@@ -43,7 +57,7 @@ const register = async function (model: NewUserModel, history: History) {
   }
 };
 
-const passwordLogin = async (model: PasswordLoginModel, history: History) => {
+const passwordLogin = async (model: PasswordLoginModel, history: History): Promise<LoginError | undefined> => {
   const result = await authorityManager.passwordLogin(model, createCallbacks(history));
 
   if (result.status === EMAIL_NOT_VERIFIED) {
@@ -58,7 +72,7 @@ const passwordLogin = async (model: PasswordLoginModel, history: History) => {
   }
 };
 
-const googleLogin = async (model: GoogleLoginModel, history: History) => {
+const googleLogin = async (model: GoogleLoginModel, history: History): Promise<void> => {
   const result = await authorityManager.googleLogin(model, createCallbacks(history));
 
   if (result.ok) {
@@ -66,13 +80,13 @@ const googleLogin = async (model: GoogleLoginModel, history: History) => {
   }
 };
 
-const sendForgottenPassword = async (email: string, history: History) => {
+const sendForgottenPassword = async (email: string, history: History): Promise<boolean> => {
   const result = await authorityManager.sendForgottenPassword(email, createCallbacks(history));
 
   return result.ok;
 };
 
-const resetPassword = async (passwordToken: string, id: string, password: string, history: History) => {
+const resetPassword = async (passwordToken: string, id: string, password: string, history: History): Promise<void> => {
   const result = await authorityManager.resetPassword(passwordToken, id, password, createCallbacks(history));
 
   if (result.ok) {
@@ -92,46 +106,31 @@ const resetPassword = async (passwordToken: string, id: string, password: string
   }
 };
 
-const sendAccountVerification = async (email: string, history: History) => {
+const sendAccountVerification = async (email: string, history: History): Promise<EmailError | undefined> => {
   const result = await authorityManager.sendAccountVerification(email, createCallbacks(history));
 
-  if (result.status === CONFLICT)
+  if (result.status === CONFLICT) {
     return {
       email: 'Account with this email has already been verified.',
     };
+  }
 
-  if (result.status === NOT_FOUND)
+  if (result.status === NOT_FOUND) {
     return {
       email: "Account with this email does't exist.",
     };
+  }
 };
 
-const verifyAccount = async (email: string, token: string, history: History) => {
+const verifyAccount = async (email: string, token: string, history: History): Promise<number | undefined> => {
   const result = await authorityManager.verifyAccount(email, token, createCallbacks(history));
 
   return result?.status;
 };
 
-const logout = async (history: History) => {
+const logout = async (history: History): Promise<void> => {
   await authorityManager.logout();
   history.push(_SignIn);
 };
 
-const getTokens = () => {
-  return {
-    bearerToken: localStorage.getItem('bearerToken'),
-    refreshToken: localStorage.getItem('refreshToken'),
-  };
-};
-
-export {
-  register,
-  passwordLogin,
-  googleLogin,
-  logout,
-  sendForgottenPassword,
-  resetPassword,
-  sendAccountVerification,
-  getTokens,
-  verifyAccount,
-};
+export { register, passwordLogin, googleLogin, logout, sendForgottenPassword, resetPassword, sendAccountVerification, verifyAccount };

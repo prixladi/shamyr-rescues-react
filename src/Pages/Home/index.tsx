@@ -8,8 +8,8 @@ const Home: React.FC = () => (
     <h1 className="label">Shamyr Rescues</h1>
     <p>
       This website focuses on spreading awareness about animal rescues in your state. This place is for animal lovers around the world to
-      look for places where they can help or donate. It's also for owners and staffers of animal rescues to add their establishments to the
-      list so people can find them. You can check our <Link to={_Places}>List of places.</Link>
+      look for places where they can help or donate. It{"'"}s also for owners and staffers of animal rescues to add their establishments to
+      the list so people can find them. You can check our <Link to={_Places}>List of places.</Link>
     </p>
 
     <p>
