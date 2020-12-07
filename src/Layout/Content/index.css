@@ -1,11 +1,13 @@
 #content {
     margin: auto;
-    max-width: 42rem;
+    max-width: 50rem;
     padding-top: 2em;
     padding-left: 1.6em;
     padding-right: 1.6em;
     padding-bottom: 2em;
-    font-family: 'Merriweather', 'Georgia', serif;
+    font-size: 1.25em;
+    font-weight: 400;
+    font-family: system-ui, sans-serif;
 }
 
 #content h1 {
@@ -80,4 +82,11 @@
     border-left: 0.32813rem solid hsla(0, 0%, 0%, 0.9);
     border-left-color: inherit;
     opacity: 0.8;
+    font-family: 'Merriweather', 'Georgia', serif;
+}
+
+@media only screen and (max-width: 420px) {
+    #content h1 {
+        font-size: 3em;
+    }
 }

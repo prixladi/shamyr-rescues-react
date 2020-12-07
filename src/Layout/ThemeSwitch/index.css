@@ -80,9 +80,8 @@ input:checked+.slider:before {
     border-radius: 50%;
 }
 
-
-@media only screen and (max-width: 42rem) {
+@media only screen and (max-width: 60rem) {
     .container {
         align-items: flex-start;
     }
-  }
+}
