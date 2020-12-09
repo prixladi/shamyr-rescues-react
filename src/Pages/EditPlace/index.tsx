@@ -19,8 +19,18 @@ const EditPlace: React.FC = () => {
     return null;
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { id, userId, removed, createdAt, updatedAt, ...rest } = place;
+  const values = {
+    address: place.address,
+    countryCode: place.countryCode,
+    description1: place.description1,
+    description2: place.description2,
+    description3: place.description3,
+    imageUrl: place.imageUrl,
+    name: place.name,
+    shortDescription: place.shortDescription,
+    quote: place.quote,
+    websiteUrl: place.websiteUrl,
+  };
 
   return (
     <Content id="new-place-page" hideFooter>
@@ -28,12 +38,12 @@ const EditPlace: React.FC = () => {
         type="wide"
         title="Edit Place"
         handleSubmit={async (values) => {
-          if (await placesService.update(id, values, history)) {
+          if (await placesService.update(place.id, values, history)) {
             history.push(_Place(place.id));
           }
         }}
         submitText="Edit"
-        initialValues={rest}
+        initialValues={values}
       >
         <p>
           Layout of textfields corresponds final layout of Place. You can try interactive example{' '}

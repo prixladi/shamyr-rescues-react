@@ -11,10 +11,10 @@
     "eject": "react-scripts eject",
     "eslint:check": "eslint -c .eslintrc.json src/**/*.ts src/**/*.tsx",
     "eslint:fix": "eslint -c .eslintrc.json --fix  src/**/*.ts src/**/*.tsx",
-    "prettier:check": "prettier -l src/**/*.ts src/**/*.tsx",
-    "prettier:fix": "prettier --write src/**/*.ts src/**/*.tsx",
-    "code:check": "yarn eslint:check && yarn prettier:check",
-    "code:fix": "yarn eslint:fix && yarn prettier:fix"
+    "format:check": "prettier -l \"**/*.{js,jsx,ts,tsx}\"",
+    "format:fix": "prettier --write \"**/*.{js,jsx,ts,tsx}\"",
+    "code:check": "yarn eslint:check && yarn format:check",
+    "code:fix": "yarn eslint:fix && yarn format:fix"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.31",

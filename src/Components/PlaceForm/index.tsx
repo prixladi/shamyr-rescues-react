@@ -45,12 +45,21 @@ const schema = yup.object().shape({
   quote: yup.string().max(2000, tooLongText('Quote', 2000)),
 });
 
+const leaveMessage = 'Do you wish to leave page? Changes you made may not be saved.';
+
 const PlaceForm: React.FC<Props> = ({ title, handleSubmit, submitText, initialValues, children, type }: Props) => {
   const { getAsOptions } = useCountries();
 
   return (
     <div id="login-page">
-      <Form<Values> validationSchema={schema} initialValues={initialValues} type={type} title={title} onSubmit={handleSubmit}>
+      <Form<Values>
+        validationSchema={schema}
+        initialValues={initialValues}
+        type={type}
+        title={title}
+        onSubmit={handleSubmit}
+        leaveMessage={leaveMessage}
+      >
         <TextInput name="name" placeholder="Name" required />
         <Textarea name="shortDescription" placeholder="Short Description (Will Be Displayed In List)" required />
         <Select name="countryCode" emptyOption="Select country" options={getAsOptions()} required />

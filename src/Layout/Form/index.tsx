@@ -1,10 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { TextInput, EmailInput, PasswordInput, Textarea, Select } from './Inputs';
-import { Formik, Form as FormikForm, FormikHelpers, FormikValues } from 'formik';
+import { Formik, Form as FormikForm, FormikHelpers, FormikValues, FormikProps } from 'formik';
 import { SubmitButton, Button } from './Buttons';
 import './index.css';
 import Options from './Options';
 import yup from 'yup';
+import { Prompt } from 'react-router-dom';
 
 type Props<Values> = {
   title?: string;
@@ -13,7 +14,32 @@ type Props<Values> = {
   // eslint-disable-next-line
   validationSchema?: yup.ObjectSchema<any>;
   type?: 'narrow' | 'normal' | 'wide';
+  leaveMessage?: string;
   children?: React.ReactNode;
+};
+
+type PromptProps = {
+  leaveMessage?: string;
+  when: boolean;
+};
+
+const LeavePromp: React.FC<PromptProps> = ({ leaveMessage, when }: PromptProps) => {
+  if (!leaveMessage || !when) {
+    return null;
+  }
+
+  useEffect(() => {
+    if (when) {
+      window.onbeforeunload = () => true;
+      return () => {
+        window.onbeforeunload = null;
+      };
+    }
+
+    window.onbeforeunload = null;
+  }, []);
+
+  return <Prompt message={leaveMessage} when={when} />;
 };
 
 const Form = <Values extends FormikValues>({
@@ -22,6 +48,7 @@ const Form = <Values extends FormikValues>({
   initialValues,
   validationSchema,
   type,
+  leaveMessage,
   children,
 }: Props<Values>): JSX.Element => {
   const onSubmitWrapper = useCallback(
@@ -43,7 +70,12 @@ const Form = <Values extends FormikValues>({
         initialValues={initialValues}
         onSubmit={onSubmitWrapper}
       >
-        <FormikForm>{children}</FormikForm>
+        {({ dirty, isSubmitting }: FormikProps<Values>) => (
+          <>
+            <LeavePromp leaveMessage={leaveMessage} when={dirty && !isSubmitting} />
+            <FormikForm>{children}</FormikForm>
+          </>
+        )}
       </Formik>
     </div>
   );

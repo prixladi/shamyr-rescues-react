@@ -60,19 +60,6 @@ services:
       DB_HOST: postgres
       PORT: 80 
 
-  react:
-    image: shamyr/rescues/react
-    ports: 
-      - 3000:80 
-    environment:
-      API_URL: http://localhost:8000/api
-      AUTH_API_URL: http://localhost:8080/api/v1
-      AUTH_API_CLIENT_ID: 5f881d54384e9c6ee9a9ca32
-      GOOGLE_CLIENT_ID: 819252787843-a69r5nl2li8jchhs7t7qtult32rqami8.apps.googleusercontent.com
-    build:
-      context: .
-      dockerfile: ./Dockerfile 
-
 volumes:
   postgresdata:
   pgadmindata:
