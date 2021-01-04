@@ -47,7 +47,7 @@ const Navigation = (props: NavigationProps): JSX.Element => {
 
   return (
     <Menu
-      isOpen={dimensions.width > 1200}
+      isOpen={dimensions.width > 1350}
       pageWrapId="layout"
       outerContainerId="content"
       noOverlay
