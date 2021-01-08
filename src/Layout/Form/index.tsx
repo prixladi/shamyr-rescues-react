@@ -23,13 +23,9 @@ type PromptProps = {
   when: boolean;
 };
 
-const LeavePromp: React.FC<PromptProps> = ({ leaveMessage, when }: PromptProps) => {
-  if (!leaveMessage || !when) {
-    return null;
-  }
-
+const LeavePrompt: React.FC<PromptProps> = ({ leaveMessage, when }: PromptProps) => {
   useEffect(() => {
-    if (when) {
+    if (when && !!leaveMessage) {
       window.onbeforeunload = () => true;
       return () => {
         window.onbeforeunload = null;
@@ -38,6 +34,10 @@ const LeavePromp: React.FC<PromptProps> = ({ leaveMessage, when }: PromptProps) 
 
     window.onbeforeunload = null;
   }, []);
+
+  if (!leaveMessage || !when) {
+    return null;
+  }
 
   return <Prompt message={leaveMessage} when={when} />;
 };
@@ -72,7 +72,7 @@ const Form = <Values extends FormikValues>({
       >
         {({ dirty, isSubmitting }: FormikProps<Values>) => (
           <>
-            <LeavePromp leaveMessage={leaveMessage} when={dirty && !isSubmitting} />
+            <LeavePrompt leaveMessage={leaveMessage} when={dirty && !isSubmitting} />
             <FormikForm>{children}</FormikForm>
           </>
         )}

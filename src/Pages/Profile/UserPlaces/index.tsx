@@ -60,7 +60,6 @@ const UserPlaces: React.FC<Props> = ({ userId }: Props) => {
           places={places}
           hasMore={hasMore}
           fetchNext={() => {
-            console.log('FETCH NETX');
             return fetchNext();
           }}
         />

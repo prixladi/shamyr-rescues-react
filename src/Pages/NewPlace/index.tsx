@@ -34,7 +34,7 @@ const NewPlace: React.FC = () => {
 
           const match = location.match(/places\/([1-9]+[0-9]*)/);
           if (!match) {
-            console.log(`Invalid location header on POST /places - ${location}`);
+            console.warn(`Invalid location header on POST /places - ${location}`);
             return;
           }
 
